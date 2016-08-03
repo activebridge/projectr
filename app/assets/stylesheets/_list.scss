@@ -1,0 +1,8 @@
+.list {
+  border: 1px solid gray;
+
+  &__item {
+    padding: 20px;
+    list-style-type: decimal;
+  }
+}

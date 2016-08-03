@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: projectr_development
+test:
+  <<: *default
+  database: projectr_test
+
+production:
+  <<: *default
+  database: projectr_production

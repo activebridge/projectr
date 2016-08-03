@@ -1,0 +1,5 @@
+ul&list
+  - @repos.each do |r|
+    li.list__item= link_to r.full_name, project_path(r.full_name), method: :patch
+
+&:list
