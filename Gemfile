@@ -13,6 +13,7 @@ gem 'slim'
 gem 'octokit'
 
 # Use Capistrano for deployment
+gem 'capistrano-passenger'
 gem 'capistrano-rails', group: :development
 
 group :development, :test do

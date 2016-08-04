@@ -54,6 +54,8 @@ GEM
       capistrano (~> 3.0)
       sshkit (~> 1.2)
     capistrano-harrow (0.5.3)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -221,6 +223,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  capistrano-passenger
   capistrano-rails
   coffee-rails (~> 4.2)
   factory_girl_rails
