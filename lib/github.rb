@@ -16,7 +16,6 @@ class Github
     `cd ./#{@rebase.repo} && git rebase origin/#{@rebase.base}`
     output = `cd ./#{@rebase.repo} && git push origin #{@rebase.head} --force-with-lease --porcelain`
     sha = `cd ./#{@rebase.repo} && git rev-parse HEAD`
-    require 'pry'; binding.pry
     return sha if output.match(/(forced update|up to date)/)
   end
 end
