@@ -5,7 +5,7 @@ class Github
 
   def rebase
     `rm -rf #{@rebase.repo}`
-    `git clone #{@rebase.repository.ssh} ./#{@rebase.repo}`
+    `git clone git@#{@rebase.repository_name.parameterize}:#{@rebase.repository_name}.git ./#{@rebase.repo}`
     `cd ./#{@rebase.repo} && git checkout #{@rebase.head}`
     output = `cd ./#{@rebase.repo} && git rebase origin/#{@rebase.base}`
     output.exclude?('is up to date')

@@ -4,6 +4,7 @@ class Rebase < ApplicationRecord
   validates :base, :head, :sha, presence: true
 
   delegate :user, to: :repository
+  delegate :name, to: :repository, prefix: true
 
   def self.from_payload(payload)
     r = new

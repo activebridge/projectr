@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :repos
+  has_many :repos, dependent: :delete_all
   has_many :rebases, through: :repos
 
   def update_with_github(info)
