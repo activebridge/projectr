@@ -11,6 +11,6 @@ class User < ApplicationRecord
   end
 
   def github
-    @github ||= Octokit::Client.new(access_token: token)
+    @github ||= Octokit::Client.new(access_token: token, per_page: 100)
   end
 end

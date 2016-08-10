@@ -15,7 +15,7 @@ class Repo < ApplicationRecord
   private
 
   def generate_ssh
-    Timeout.timeout(1) do
+    Timeout.timeout(3) do
       `ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa.#{name.parameterize}`
       config = SSH_CONFIG % { name: name.parameterize }
       `echo "#{config}" >> ~/.ssh/config`
