@@ -2,10 +2,26 @@ class SessionsController < ApplicationController
   skip_before_action :require_user
 
   def create
-    token = github.exchange_code_for_token(params[:code])['access_token']
-    user = User.where(token: token).first_or_initialize
-    user.update_with_github(Octokit::Client.new(access_token: token).user)
+    user = User.where(github_id: github_id).first_or_initialize
+    user.update_with_github(
+      github_user,
+      token
+    )
     session[:user_id] = user.id
     redirect_to new_project_path
+  end
+
+  private
+
+  def token
+    @token ||= github.exchange_code_for_token(params[:code])['access_token']
+  end
+
+  def github_id
+    @github_id ||= github_user.id
+  end
+
+  def github_user
+    @github_user ||= Octokit::Client.new(access_token: token).user
   end
 end
