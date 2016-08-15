@@ -1,7 +1,5 @@
 class ProjectsController < ApplicationController
-  def new
-    @repos = current_user.github.repos
-  end
+  before_action :repos, only: :new
 
   def update
     repo = current_user.github.repo(params[:id])
@@ -22,4 +20,8 @@ class ProjectsController < ApplicationController
     @repo ||= current_user.repos.find(params[:id])
   end
   helper_method :repo
+
+  def repos
+    @repos = current_user.github.repos.select { |a| a.permissions.admin }
+  end
 end

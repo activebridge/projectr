@@ -19,7 +19,9 @@ gem 'capistrano-rails', group: :development
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'ffaker'
   gem 'awesome_print'
 end
 

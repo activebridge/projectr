@@ -8,7 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def github
-    @github ||= Octokit::Client.new(client_id: ENV['github_token'], client_secret: ENV['github_secret'])
+    @github ||= Octokit::Client.new(
+      client_id: ENV['github_token'],
+      client_secret: ENV['github_secret']
+    )
   end
 
   def require_user
