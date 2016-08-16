@@ -21,6 +21,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'simplecov'
   gem 'ffaker'
   gem 'awesome_print'
 end
