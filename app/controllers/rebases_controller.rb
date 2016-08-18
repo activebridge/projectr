@@ -26,7 +26,7 @@ class RebasesController < ApplicationController
   end
 
   def pull_request
-    RebaserJob.new.perform(payload) if payload['action'].include?('opened')
+    RebaserJob.new.perform(payload) if payload['action'].include?('opened' && 'synchronize')
   end
 
   def process?

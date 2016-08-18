@@ -5,7 +5,6 @@ class RefresherJob < ApplicationJob
     user = Repo.find_by(name: repo).user
     user.github.pulls(repo).each do |pull|
       pr = user.github.pull(repo, pull['number'])
-      next unless pr['mergeable']
       RebaserJob.new.perform('repository' => { 'full_name' => repo }, 'pull_request' => pr)
     end
   end
