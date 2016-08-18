@@ -8,7 +8,9 @@ class Github
     `git clone git@#{@rebase.repository_name.parameterize}:#{@rebase.repository_name}.git ./#{@rebase.repo}`
     `cd ./#{@rebase.repo} && git checkout #{@rebase.head}`
     output = `cd ./#{@rebase.repo} && git rebase origin/#{@rebase.base}`
-    output.exclude?('is up to date')
+    `cd ./#{@rebase.repo} && git rebase --abort`
+    return 'conflict' unless output.exclude?('CONFLICT')
+    return 'fail' if output.exclude?('is up to date')
   end
 
   def push
