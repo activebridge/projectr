@@ -16,4 +16,9 @@ module SSH
       `echo "#{config}" >> ~/.ssh/config`
     end
   end
+
+  def destroy_ssh
+    `rm ~/.ssh/id_rsa.#{name.parameterize}`
+    `rm ~/.ssh/id_rsa.#{name.parameterize}.pub`
+  end
 end

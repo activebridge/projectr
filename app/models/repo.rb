@@ -6,4 +6,5 @@ class Repo < ApplicationRecord
   validates :name, :ssh, presence: true, uniqueness: true
 
   after_create :generate_ssh
+  after_destroy :destroy_ssh
 end
