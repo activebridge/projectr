@@ -1,5 +1,6 @@
 class RebasesController < ApplicationController
   EVENTS = %w(push pull_request).freeze
+  ACTIONS = %w(opened reopened synchronize).freeze
 
   skip_before_action :verify_authenticity_token, only: :create
   skip_before_action :require_user, only: :create
@@ -26,7 +27,7 @@ class RebasesController < ApplicationController
   end
 
   def pull_request
-    RebaserJob.new.perform(payload) if payload['action'].include?('opened' || 'synchronize')
+    RebaserJob.new.perform(payload) if ACTIONS.include?(payload['action'])
   end
 
   def process?
