@@ -5,6 +5,8 @@ class RebasesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
   skip_before_action :require_user, only: :create
 
+  before_action :check_for_access, only: :update
+
   def create
     send(event) if EVENTS.include?(event)
     head 200
@@ -35,7 +37,16 @@ class RebasesController < ApplicationController
   end
 
   def rebase
-    @rebase ||= current_user.rebases.find(params[:id])
+    @rebase ||= Rebase.find(params[:id])
+  end
+
+  def check_for_access
+    head :unprocessable_entity unless access
+  end
+
+  def access
+    repo = Repo.find_by(name: rebase.repo)
+    repo.collaborators.include?(current_user.github_id)
   end
 
   def payload
