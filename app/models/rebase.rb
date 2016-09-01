@@ -6,13 +6,11 @@ class Rebase < ApplicationRecord
   delegate :user, to: :repository
   delegate :name, to: :repository, prefix: true
 
-  def self.from_payload(payload)
-    r = new
-    r.repo = payload['repository']['full_name']
-    r.base = payload['pull_request']['base']['ref']
-    r.head = payload['pull_request']['head']['ref']
-    r.sha = payload['pull_request']['head']['sha']
-    r.save!
-    r
+  def update_from_payload(payload)
+    self.repo = payload['repository']['full_name']
+    self.base = payload['pull_request']['base']['ref']
+    self.head = payload['pull_request']['head']['ref']
+    self.sha = payload['pull_request']['head']['sha']
+    save
   end
 end

@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 
   def update
     repo = current_user.github.repo(params[:id])
-    @repo = current_user.repos.build(name: params[:id], ssh: repo['ssh_url'])
+    @repo = current_user.repos.build(name: params[:id], ssh: repo['ssh_url'], collaborators: collaborators)
     render :show
     return unless @repo.save
     current_user.github.create_hook(params[:id], 'web', { url: webhook }, { events: ['push', 'pull_request'] }) unless hook_url
@@ -18,6 +18,10 @@ class ProjectsController < ApplicationController
 
   def repos
     @repos = current_user.github.repos.select { |a| a.permissions.admin }
+  end
+
+  def collaborators
+    @collaborators ||= current_user.github.collaborators(params[:id]).map(&:id)
   end
 
   def github_hooks
