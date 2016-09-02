@@ -1,2 +1,6 @@
+= form_for repo, url: project_path, method: :patch, remote: true do |f|
+  = f.check_box :auto_rebase
+  = f.label :auto_rebase
+
 h1 Dashboard
 h2= repo.name
