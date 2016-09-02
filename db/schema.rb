@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831124109) do
+ActiveRecord::Schema.define(version: 20160901184607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20160831124109) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "ssh"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "collaborators", default: [],              array: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "collaborators", default: [],                 array: true
+    t.boolean  "auto_rebase",   default: false
     t.index ["name"], name: "index_repos_on_name", using: :btree
     t.index ["user_id"], name: "index_repos_on_user_id", using: :btree
   end

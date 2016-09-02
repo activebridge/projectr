@@ -1,11 +1,22 @@
 class ProjectsController < ApplicationController
-  before_action :repos, only: :new
+  def index
+    @repos = current_user.github.repos.select { |a| a.permissions.admin }
+  end
 
   def update
-    repo = current_user.github.repo(params[:id])
-    @repo = current_user.repos.build(name: params[:id], ssh: repo['ssh_url'], collaborators: collaborators)
-    render :show
-    return unless @repo.save
+    if repo.update(repo_params)
+      head :ok
+    else
+      head :unprocessable_entity
+    end
+  end
+
+  def show
+    git_repo = current_user.github.repo(params[:id])
+    unless repo
+      @repo = current_user.repos.build(name: params[:id], ssh: git_repo['ssh_url'], collaborators: collaborators)
+      @repo.save
+    end
     current_user.github.create_hook(params[:id], 'web', { url: webhook }, { events: ['push', 'pull_request'] }) unless hook_url
     current_user.github.add_deploy_key(params[:id], 'ProjectR', ssh_key) unless deploy_key
   end
@@ -14,10 +25,6 @@ class ProjectsController < ApplicationController
 
   def ssh_key
     @ssh_key = `cat ~/.ssh/id_rsa.#{repo.name.parameterize}.pub`.strip
-  end
-
-  def repos
-    @repos = current_user.github.repos.select { |a| a.permissions.admin }
   end
 
   def collaborators
@@ -45,7 +52,11 @@ class ProjectsController < ApplicationController
   end
 
   def repo
-    @repo ||= current_user.repos.find(params[:id])
+    @repo ||= current_user.repos.find_by(name: params[:id])
   end
   helper_method :repo
+
+  def repo_params
+    params.require(:repo).permit(:auto_rebase)
+  end
 end

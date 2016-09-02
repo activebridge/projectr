@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       token
     )
     session[:user_id] = user.id
-    redirect_to new_project_path
+    redirect_to projects_path
   end
 
   private
