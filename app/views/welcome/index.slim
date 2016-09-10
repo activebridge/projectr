@@ -1,4 +1,4 @@
-= inline_svg :left_sticks, class: 'left-sticks'
+= inline_svg 'left_sticks.svg', class: 'left-sticks'
 = inline_svg :right_sticks, class: 'right-sticks'
 = link_to Octokit.authorize_url(ENV['github_token'], scope: 'repo,user:email'), title: 'Start NOW' do
   = inline_svg :projectr, class: :logo
