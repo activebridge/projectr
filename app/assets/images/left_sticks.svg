@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 433 269" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <defs>
+        <rect id="path-1" x="0" y="0" width="445" height="445"></rect>
+        <ellipse id="path-3" cx="59.1930992" cy="59.1239782" rx="59.1930992" ry="59.1239782"></ellipse>
+        <linearGradient x1="6.77183498%" y1="-8.88643775%" x2="79.3254635%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-6" cx="40.0212485" cy="39.938818" rx="39.9572461" ry="39.9105872"></ellipse>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="[project_R]web-variant" sketch:type="MSLayerGroup" transform="translate(0.000000, -441.000000)">
+            <g id="Project-R" transform="translate(0.000000, 338.000000)">
+                <g id="pseudo-elements-group">
+                    <g id="left-sticks" transform="translate(0.000000, 27.000000)">
+                        <mask id="mask-2" sketch:name="Mask" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                        <g id="pseudo-element-2" mask="url(#mask-2)">
+                            <g transform="translate(33.453196, 300.366377) rotate(19.000000) translate(-33.453196, -300.366377) translate(-357.046804, 87.366377)">
+                                <path d="M644.258782,168.851867 L294.386365,211.810798 L276.528365,214.003484 L272.832166,183.900359 L290.690166,181.707673 L641.622824,138.61856 C645.794997,109.938922 668.653779,86.4297657 698.774688,82.7313831 C734.879014,78.2983293 767.745254,104.007185 772.18349,140.15372 C776.621727,176.300255 750.951289,209.196511 714.846964,213.629565 C683.11733,217.525474 653.888617,198.141414 644.258782,168.851867 L644.258782,168.851867 L644.258782,168.851867 Z" id="Path" fill-opacity="0.0599999987" fill="#808080" sketch:type="MSShapeGroup" transform="translate(522.757252, 148.180474) rotate(-20.000000) translate(-522.757252, -148.180474) "></path>
+                                <path d="M711.952037,100.124874 L700.50982,75.4245146 L367.444732,230.699772 L13.2969646,394.82237 L0.946487911,400.545948 L12.3887048,425.246307 L24.7391815,419.52273 L378.886948,255.400131 L711.952037,100.124874 Z" id="Line" fill="#009EFF" sketch:type="MSShapeGroup"></path>
+                                <g id="blue" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(704.203234, 79.128216) rotate(-2.000000) translate(-704.203234, -79.128216) translate(644.703234, 19.628216)">
+                                    <mask id="mask-4" sketch:name="blue" fill="white">
+                                        <use xlink:href="#path-3"></use>
+                                    </mask>
+                                    <use fill="#009EFF" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                                    <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-4)" cx="40.1294393" cy="36.8655393" rx="70.3353297" ry="70.2531976"></ellipse>
+                                    <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-4)" cx="48.7907825" cy="45.473295" rx="16.7133457" ry="16.6938291"></ellipse>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="pseudo-element-1" mask="url(#mask-2)">
+                            <g transform="translate(82.751676, 104.304010) rotate(-70.000000) translate(-82.751676, -104.304010) translate(19.751676, -58.695990)">
+                                <path d="M140.862499,173.634555 L-80.4513376,201.397612 L-91.6542622,202.773158 L-93.9730123,183.888454 L-82.7700877,182.512908 L137.381783,155.481657 C139.999128,137.489955 154.339211,122.741869 173.235071,120.42175 C195.88453,117.640746 216.50263,133.768777 219.286885,156.444715 C222.07114,179.120653 205.96721,199.757582 183.317751,202.538586 C163.412684,204.982621 145.076528,192.822348 139.035408,174.448028 L140.862499,173.634555 Z" id="Path" fill-opacity="0.0599999987" fill="#808080" sketch:type="MSShapeGroup" transform="translate(62.813408, 161.480168) rotate(98.000000) translate(-62.813408, -161.480168) "></path>
+                                <path d="M50.4081539,289.590254 L50.4081539,30.1226154 L50.4081539,19.2201492 L32.0299311,19.2201492 L32.0299311,30.1226154 L32.0299311,289.590254 L32.0299311,300.492721 L50.4081539,300.492721 L50.4081539,289.590254" id="Path" fill="#FFAA00" sketch:type="MSShapeGroup"></path>
+                                <g id="yellow" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(41.562656, 285.441828) rotate(-270.000000) translate(-41.562656, -285.441828) translate(1.562656, 245.441828)">
+                                    <mask id="mask-7" sketch:name="yellow" fill="white">
+                                        <use xlink:href="#path-6"></use>
+                                    </mask>
+                                    <use fill="#FFAA00" sketch:type="MSShapeGroup" xlink:href="#path-6"></use>
+                                    <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="27.1526648" cy="24.9136557" rx="47.4786101" ry="47.4231683"></ellipse>
+                                    <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="32.9993501" cy="30.7241677" rx="11.282046" ry="11.2688717"></ellipse>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

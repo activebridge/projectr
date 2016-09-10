@@ -1,0 +1,62 @@
+body {
+  background: #e1e1e1 asset-data-url('bg.png') repeat;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  text-align: center;
+}
+
+.logo {
+  max-width: 300px;
+  position: relative;
+  z-index: 10000;
+  background: #e1e1e1;
+  background: radial-gradient(#e1e1e1 50%, transparent);
+  padding: 5%;
+}
+
+.left-sticks, .right-sticks {
+  max-width: 433px;
+  position: absolute;
+  top: 10%;
+  width: 33%;
+  left: 0;
+}
+
+.right-sticks {
+  left: auto;
+  right: 0;
+}
+
+.right-pattern {
+  &:after, &:before {
+    content: '';
+    position: absolute;
+    width: 45%;
+    height: 50px;
+    top: 15%;
+    right: 0;
+    background: repeating-linear-gradient(45deg, transparent, #adadad 1px, transparent 2px, transparent 10px);
+  }
+
+  &:after {
+    height: 100px;
+    width: 25%;
+    top: 70%;
+  }
+}
+
+.left-pattern {
+  position: absolute;
+  content: '';
+  width: 30%;
+  height: 300px;
+  top: 45%;
+  left: 0;
+  background: repeating-linear-gradient(0deg, transparent, #adadad 1px, transparent 1px, transparent 12px),
+  repeating-linear-gradient(90deg, transparent, #adadad 1px, transparent 1px, transparent 12px);
+}
+
+.history {
+  max-width: 574px;
+}

@@ -1,2 +1,11 @@
-= link_to Octokit.authorize_url(ENV['github_token'], scope: 'repo,user:email') do
-  img.landig src='https://lh6.googleusercontent.com/-fx4mKe-IsAQ/V6tao0GsH7I/AAAAAAAAA9A/accMr8WIbqsCDhKQ5TXxsHZ2Ws5yuSOcgCL0B/w1241-h886-no/2016-08-10.png'
+/ = inline_svg :left_sticks, class: 'left-sticks'
+/ = inline_svg :right_sticks, class: 'right-sticks'
+= link_to Octokit.authorize_url(ENV['github_token'], scope: 'repo,user:email'), title: 'Start NOW' do
+  = inline_svg :projectr, class: :logo
+/ br
+/ = inline_svg :ugly, class: :history
+/ = inline_svg :clean, class: :history
+
+.left-pattern
+.right-pattern
+  / img.landig src='https://lh6.googleusercontent.com/-fx4mKe-IsAQ/V6tao0GsH7I/AAAAAAAAA9A/accMr8WIbqsCDhKQ5TXxsHZ2Ws5yuSOcgCL0B/w1241-h886-no/2016-08-10.png'

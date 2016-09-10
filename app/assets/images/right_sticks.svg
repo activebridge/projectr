@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 438 425" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <defs>
+        <rect id="path-1" x="0" y="0" width="445" height="445"></rect>
+        <ellipse id="path-3" cx="60.2185847" cy="60.1482662" rx="60.2185847" ry="60.1482662"></ellipse>
+        <linearGradient x1="6.77183498%" y1="-8.88643775%" x2="79.3254635%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-6" cx="42.4649788" cy="42.3776377" rx="42.3375913" ry="42.2881528"></ellipse>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="[project_R]web-variant" sketch:type="MSLayerGroup" transform="translate(-1208.000000, -352.000000)">
+            <g id="Project-R" transform="translate(0.000000, 338.000000)">
+                <g id="pseudo-elements-group">
+                    <g id="right-sticks" transform="translate(1201.000000, 0.000000)">
+                        <mask id="mask-2" sketch:name="Mask" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                        <g id="pseudo-element-4" mask="url(#mask-2)">
+                            <g transform="translate(414.342653, 185.374486) scale(-1, 1) rotate(11.000000) translate(-414.342653, -185.374486) translate(9.842653, -217.125514)">
+                                <path d="M438.36917,287.93734 L754.587521,214.932582 L770.727768,211.206312 L777.009119,238.413831 L760.868872,242.140101 L443.692264,315.366091 C442.632131,342.02745 423.964452,365.752907 396.740859,372.037968 C364.109391,379.571536 331.542057,359.194743 323.999682,326.525126 C316.457307,293.85551 336.796034,261.26439 369.427502,253.730822 C398.105077,247.110082 426.733118,262.045785 438.36917,287.93734 L438.36917,287.93734 Z" id="Path" fill-opacity="0.0599999987" fill="#808080" sketch:type="MSShapeGroup" transform="translate(549.718794, 292.405061) rotate(168.000000) translate(-549.718794, -292.405061) "></path>
+                                <path d="M360.595544,380.620857 L33.6365644,199.347065 L20.1494429,223.534416 L347.108423,404.808208 L693.955827,598.143305 L706.051712,604.885633 L719.538834,580.698283 L707.442948,573.955954 L360.595544,380.620857 Z" id="Line" fill="#FFAA00" sketch:type="MSShapeGroup" transform="translate(369.844138, 402.116349) rotate(126.000000) translate(-369.844138, -402.116349) "></path>
+                                <g id="yellow" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(723.541167, 228.006885) rotate(51.000000) translate(-723.541167, -228.006885) translate(663.041167, 167.506885)">
+                                    <mask id="mask-4" sketch:name="yellow" fill="white">
+                                        <use xlink:href="#path-3"></use>
+                                    </mask>
+                                    <use fill="#FF9F00" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                                    <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-4)" cx="40.8246582" cy="37.5042131" rx="71.5538477" ry="71.4702928"></ellipse>
+                                    <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-4)" cx="49.636054" cy="46.261093" rx="17.0028945" ry="16.9830399"></ellipse>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="pseudo-element-3" mask="url(#mask-2)">
+                            <g transform="translate(386.002437, 363.809515) scale(-1, 1) rotate(-78.000000) translate(-386.002437, -363.809515) translate(299.502437, 191.809515)">
+                                <path d="M8.87534547,168.945145 L229.3995,118.033132 L240.655375,115.434509 L245.03586,134.408471 L233.779984,137.007095 L12.5875612,188.07339 C11.848247,206.666472 -1.17020787,223.212116 -20.1553798,227.595188 C-42.911892,232.848943 -65.623679,218.638588 -70.8835759,195.855471 C-76.1434728,173.072355 -61.9596636,150.34398 -39.2031515,145.090225 C-19.2040025,140.473057 0.760603149,150.888908 8.87534547,168.945145 L8.87534547,168.945145 Z" id="Path" fill-opacity="0.0599999987" fill="#808080" sketch:type="MSShapeGroup" transform="translate(86.528276, 172.060841) rotate(-79.000000) translate(-86.528276, -172.060841) "></path>
+                                <path d="M95.8744183,286.731792 L95.8744183,11.8070676 L95.8744183,0.255116381 L76.4013624,0.255116381 L76.4013624,11.8070676 L76.4013624,286.731792 L76.4013624,298.283743 L95.8744183,298.283743 L95.8744183,286.731792" id="Path" fill="#F95257" sketch:type="MSShapeGroup"></path>
+                                <g id="red" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(86.652350, 283.371917) rotate(-219.000000) translate(-86.652350, -283.371917) translate(44.152350, 240.871917)">
+                                    <mask id="mask-7" sketch:name="red" fill="white">
+                                        <use xlink:href="#path-6"></use>
+                                    </mask>
+                                    <use fill="#F95257" sketch:type="MSShapeGroup" xlink:href="#path-6"></use>
+                                    <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="28.8297839" cy="26.4573919" rx="50.3070203" ry="50.2482757"></ellipse>
+                                    <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="35.0247697" cy="32.6140495" rx="11.9541434" ry="11.9401843"></ellipse>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
