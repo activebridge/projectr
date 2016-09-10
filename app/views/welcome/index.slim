@@ -1,11 +1,11 @@
 = inline_svg 'left_sticks.svg', class: 'left-sticks'
-= inline_svg :right_sticks, class: 'right-sticks'
+= inline_svg 'right_sticks.svg', class: 'right-sticks'
 = link_to Octokit.authorize_url(ENV['github_token'], scope: 'repo,user:email'), title: 'Start NOW' do
-  = inline_svg :projectr, class: :logo
+  = inline_svg 'projectr.svg', class: :logo
 br
-=> inline_svg :ugly, class: :history
+=> inline_svg 'ugly.svg', class: :history
 span.to>
-= inline_svg :clean, class: 'history clean'
+= inline_svg 'clean.svg', class: 'history clean'
 
 .left-pattern
 .right-pattern
