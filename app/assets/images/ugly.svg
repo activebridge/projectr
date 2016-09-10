@@ -5,7 +5,7 @@
             <stop stop-color="#363636" offset="0%"></stop>
             <stop stop-color="#4D4D4D" offset="100%"></stop>
         </linearGradient>
-        <rect id="path-2" x="0" y="127" width="574" height="203" rx="20"></rect>
+        <rect id="history-bg" x="0" y="127" width="574" height="203" rx="20"></rect>
         <path id="path-4" d="M13.4064253,13.2634696 L13.4064253,87.5207632 L63.7113394,87.5207632"></path>
         <path id="path-5" d="M102.31594,32.0710466 L102.31594,79.3283403 L142.620855,79.3283403 L154.903762,89.4302784"></path>
         <ellipse id="path-6" cx="13.3923445" cy="13.1653321" rx="13.0449761" ry="12.8346679"></ellipse>
@@ -14,11 +14,11 @@
             <stop stop-color="#FFFFFF" offset="100%"></stop>
         </linearGradient>
         <ellipse id="path-9" cx="13.3923445" cy="13.1653321" rx="13.0449761" ry="12.8346679"></ellipse>
-        <path id="path-11" d="M13.4064253,13.2634696 L13.4064253,167.520763 L163.711339,167.520763"></path>
-        <path id="path-12" d="M162.31594,72.0710466 L162.31594,119.32834 L282.620855,119.32834 L294.903762,129.430278"></path>
+        <path id="blue-path" d="M13.4064253,13.2634696 L13.4064253,167.520763 L163.711339,167.520763"></path>
+        <path id="blue-path-2" d="M162.31594,72.0710466 L162.31594,119.32834 L282.620855,119.32834 L294.903762,129.430278"></path>
         <ellipse id="path-13" cx="13.3923445" cy="13.1653321" rx="13.0449761" ry="12.8346679"></ellipse>
         <ellipse id="path-15" cx="13.3923445" cy="13.1653321" rx="13.0449761" ry="12.8346679"></ellipse>
-        <path id="path-17" d="M13.4064253,13.2634696 L13.4064253,87.5207632 L52.7113394,87.5207632"></path>
+        <path id="yellow-path" d="M13.4064253,13.2634696 L13.4064253,87.5207632 L52.7113394,87.5207632"></path>
         <path id="path-18" d="M85.4573943,83.2125006 L85.4573943,130.469794 L124.012618,130.469794 L135.762308,140.571732"></path>
         <ellipse id="path-19" cx="13.3923445" cy="13.1653321" rx="13.0449761" ry="12.8346679"></ellipse>
         <ellipse id="path-21" cx="13.3923445" cy="13.1653321" rx="13.0449761" ry="12.8346679"></ellipse>
@@ -31,9 +31,9 @@
             <g id="Project-R" transform="translate(0.000000, 338.000000)">
                 <g id="ugly-history" transform="translate(135.000000, 658.000000)">
                     <mask id="mask-3" sketch:name="element bg" fill="white">
-                        <use xlink:href="#path-2"></use>
+                        <use xlink:href="#history-bg"></use>
                     </mask>
-                    <use id="element-bg" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
+                    <use id="element-bg" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" xlink:href="#history-bg"></use>
                     <path d="M-9.55055982,129.906251 L511.732926,129.906251 L511.732926,153.994938 L525.619725,166.370327" id="Path-2258" stroke="#979797" stroke-width="7" sketch:type="MSShapeGroup" mask="url(#mask-3)"></path>
                     <path d="M-11.9081726,319 L615,319" id="Line" stroke="#707070" stroke-width="4" stroke-linecap="round" stroke-dasharray="10,12" sketch:type="MSShapeGroup" mask="url(#mask-3)"></path>
                     <g id="merge-blue-1" transform="translate(17.000000, 117.000000)">
@@ -66,12 +66,12 @@
                     </g>
                     <g id="merge-blue-2" transform="translate(226.000000, 114.000000)">
                         <g id="Path-2227">
-                            <use stroke="#20A5FF" stroke-width="7" sketch:type="MSShapeGroup" xlink:href="#path-11"></use>
-                            <use stroke="none" xlink:href="#path-11"></use>
+                            <use stroke="#20A5FF" stroke-width="7" sketch:type="MSShapeGroup" xlink:href="#blue-path"></use>
+                            <use stroke="none" xlink:href="#blue-path"></use>
                         </g>
                         <g id="Path-2227">
-                            <use stroke="#20A5FF" stroke-width="7" sketch:type="MSShapeGroup" transform="translate(228.609851, 100.750662) rotate(-90.000000) translate(-228.609851, -100.750662) " xlink:href="#path-12"></use>
-                            <use stroke="none" xlink:href="#path-12"></use>
+                            <use stroke="#20A5FF" stroke-width="7" sketch:type="MSShapeGroup" transform="translate(228.609851, 100.750662) rotate(-90.000000) translate(-228.609851, -100.750662) " xlink:href="#blue-path-2"></use>
+                            <use stroke="none" xlink:href="#blue-path-2"></use>
                         </g>
                         <path d="M250.724437,19.2560664 L250.724437,38.5307514 L272.617035,29.4513551 L250.724437,19.2560664 Z" id="Path-2228" fill="#20A5FF" sketch:type="MSShapeGroup" transform="translate(261.670736, 28.893409) rotate(-45.000000) translate(-261.670736, -28.893409) "></path>
                         <g id="blue">
@@ -94,8 +94,8 @@
                     </g>
                     <g id="merge-yellow-1" transform="translate(264.000000, 114.000000)">
                         <g id="Path-2227">
-                            <use stroke="#FFAA00" stroke-width="7" sketch:type="MSShapeGroup" xlink:href="#path-17"></use>
-                            <use stroke="none" xlink:href="#path-17"></use>
+                            <use stroke="#FFAA00" stroke-width="7" sketch:type="MSShapeGroup" xlink:href="#yellow-path"></use>
+                            <use stroke="none" xlink:href="#yellow-path"></use>
                         </g>
                         <g id="Path-2227">
                             <use stroke="#FFAA00" stroke-width="7" sketch:type="MSShapeGroup" transform="translate(110.609851, 111.892116) scale(1, -1) rotate(-90.000000) translate(-110.609851, -111.892116) " xlink:href="#path-18"></use>

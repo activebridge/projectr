@@ -6,13 +6,13 @@
             <stop stop-color="#414141" offset="0%"></stop>
             <stop stop-color="#4A4A4A" offset="100%"></stop>
         </linearGradient>
-        <polygon id="path-2" points="152.5 23 260.320163 85.25 260.320163 209.75 152.5 272 44.6798372 209.75 44.6798372 85.25 "></polygon>
-        <ellipse id="path-3" cx="22.2583732" cy="21.7927461" rx="21.7416268" ry="21.7202073"></ellipse>
+        <polygon id="logo-polygon" points="152.5 23 260.320163 85.25 260.320163 209.75 152.5 272 44.6798372 209.75 44.6798372 85.25 "></polygon>
+        <ellipse id="logo-red-path" cx="22.2583732" cy="21.7927461" rx="21.7416268" ry="21.7202073"></ellipse>
         <linearGradient x1="6.77183498%" y1="-8.88643775%" x2="79.3254635%" y2="50%" id="linearGradient-5">
             <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
             <stop stop-color="#FFFFFF" offset="100%"></stop>
         </linearGradient>
-        <ellipse id="path-6" cx="21.7416268" cy="21.7202073" rx="21.7416268" ry="21.7202073"></ellipse>
+        <ellipse id="logo-yellow-path" cx="21.7416268" cy="21.7202073" rx="21.7416268" ry="21.7202073"></ellipse>
         <ellipse id="path-8" cx="22.3205742" cy="22.2797927" rx="21.7416268" ry="21.7202073"></ellipse>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
@@ -26,8 +26,8 @@
                     <g id="logo">
                         <path d="M161.8912,2.99936202 L272.311649,66.750638 C278.05055,70.0639941 282.702849,78.1196942 282.702849,84.748724 L282.702849,212.251276 C282.702849,218.877988 278.052557,226.934847 272.311649,230.249362 L161.8912,294.000638 C156.152299,297.313994 146.849708,297.315153 141.1088,294.000638 L30.6883512,230.249362 C24.94945,226.936006 20.2971513,218.880306 20.2971513,212.251276 L20.2971513,84.748724 C20.2971513,78.1220117 24.9474429,70.0651529 30.6883512,66.750638 L141.1088,2.99936202 C146.847701,-0.31399413 156.150292,-0.315152886 161.8912,2.99936202 Z" id="Polygon-1" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup"></path>
                         <g id="Polygon-2">
-                            <use stroke="none" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
-                            <use stroke="#5E5E5E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10,12" xlink:href="#path-2"></use>
+                            <use stroke="none" sketch:type="MSShapeGroup" xlink:href="#logo-polygon"></use>
+                            <use stroke="#5E5E5E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10,12" xlink:href="#logo-polygon"></use>
                         </g>
                         <g id="circles" transform="translate(0.000000, 51.000000)">
                             <path d="M150.662296,89.6858734 L25.4347298,19.8704217 L21.0675693,17.4356919 L16.1981097,26.1700129 L20.5652702,28.6047427 L145.792837,98.4201945 L150.159997,100.854924 L155.029457,92.1206032 L150.662296,89.6858734" id="Line" fill="#FFAA00" sketch:type="MSShapeGroup"></path>
@@ -35,17 +35,17 @@
                             <path d="M283.607628,33.0529385 L279.11815,24.3341198 L273.640783,26.782701 L144.093889,92.9328038 L139.980762,95.381385 L146.192191,104.100204 L150.245973,101.651622 L278.189606,35.5015197 L283.607628,33.0529385 Z" id="Line" fill="#F95257" sketch:type="MSShapeGroup"></path>
                             <g id="red" transform="translate(259.000000, 3.000000)">
                                 <mask id="mask-4" sketch:name="red" fill="white">
-                                    <use xlink:href="#path-3"></use>
+                                    <use xlink:href="#logo-red-path"></use>
                                 </mask>
-                                <use fill="#FF3C47" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                                <use fill="#FF3C47" sketch:type="MSShapeGroup" xlink:href="#logo-red-path"></use>
                                 <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-4)" cx="15.2562905" cy="13.6157269" rx="25.8341683" ry="25.8087169"></ellipse>
                                 <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-4)" cx="18.437602" cy="16.7779336" rx="6.13881227" ry="6.1327644"></ellipse>
                             </g>
                             <g id="yellow">
                                 <mask id="mask-7" sketch:name="yellow" fill="white">
-                                    <use xlink:href="#path-6"></use>
+                                    <use xlink:href="#logo-yellow-path"></use>
                                 </mask>
-                                <use fill="#FF9F00" sketch:type="MSShapeGroup" xlink:href="#path-6"></use>
+                                <use fill="#FF9F00" sketch:type="MSShapeGroup" xlink:href="#logo-yellow-path"></use>
                                 <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="14.739544" cy="13.5431881" rx="25.8341683" ry="25.8087169"></ellipse>
                                 <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="17.9208556" cy="16.7053947" rx="6.13881227" ry="6.1327644"></ellipse>
                             </g>

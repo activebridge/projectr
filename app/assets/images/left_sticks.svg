@@ -7,7 +7,7 @@
             <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
             <stop stop-color="#FFFFFF" offset="100%"></stop>
         </linearGradient>
-        <ellipse id="path-6" cx="40.0212485" cy="39.938818" rx="39.9572461" ry="39.9105872"></ellipse>
+        <ellipse id="blue-circle" cx="40.0212485" cy="39.938818" rx="39.9572461" ry="39.9105872"></ellipse>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="[project_R]web-variant" sketch:type="MSLayerGroup" transform="translate(0.000000, -441.000000)">
@@ -38,9 +38,9 @@
                                 <path d="M50.4081539,289.590254 L50.4081539,30.1226154 L50.4081539,19.2201492 L32.0299311,19.2201492 L32.0299311,30.1226154 L32.0299311,289.590254 L32.0299311,300.492721 L50.4081539,300.492721 L50.4081539,289.590254" id="Path" fill="#FFAA00" sketch:type="MSShapeGroup"></path>
                                 <g id="yellow" stroke-width="1" fill="none" sketch:type="MSLayerGroup" transform="translate(41.562656, 285.441828) rotate(-270.000000) translate(-41.562656, -285.441828) translate(1.562656, 245.441828)">
                                     <mask id="mask-7" sketch:name="yellow" fill="white">
-                                        <use xlink:href="#path-6"></use>
+                                        <use xlink:href="#blue-circle"></use>
                                     </mask>
-                                    <use fill="#FFAA00" sketch:type="MSShapeGroup" xlink:href="#path-6"></use>
+                                    <use fill="#FFAA00" sketch:type="MSShapeGroup" xlink:href="#blue-circle"></use>
                                     <ellipse id="Oval-51" opacity="0.268248601" fill="url(#linearGradient-5)" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="27.1526648" cy="24.9136557" rx="47.4786101" ry="47.4231683"></ellipse>
                                     <ellipse id="Oval-53" opacity="0.436042444" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-7)" cx="32.9993501" cy="30.7241677" rx="11.282046" ry="11.2688717"></ellipse>
                                 </g>
