@@ -4,3 +4,14 @@
 
 h1 Dashboard
 h2= repo.name
+
+table
+  thead
+    tr
+      td
+        'name
+      td
+        'status
+      td
+  tbody
+    = render partial: 'pull', collection: @pulls
