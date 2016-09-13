@@ -7,6 +7,10 @@ class ApplicationJob < ActiveJob::Base
     @rebase.user.github.create_status(@rebase.repo, @rebase.sha, status, options.merge(context: 'ProjectR'))
   end
 
+  def status
+    @rebase.user.github.status(@rebase.repo, @rebase.head)
+  end
+
   def github
     Github.new(@rebase)
   end

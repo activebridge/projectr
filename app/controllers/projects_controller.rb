@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :check_repo, only: :show
+
   def index
     @repos = current_user.github.repos.select { |a| a.permissions.admin }
   end
@@ -11,14 +13,17 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
+  def create
     git_repo = current_user.github.repo(params[:id])
-    unless repo
-      @repo = current_user.repos.build(name: params[:id], ssh: git_repo['ssh_url'], collaborators: collaborators)
-      @repo.save
-    end
+    @repo = current_user.repos.build(name: params[:id], ssh: git_repo['ssh_url'], collaborators: collaborators)
+    @repo.save
     current_user.github.create_hook(params[:id], 'web', { url: webhook }, { events: ['push', 'pull_request'] }) unless hook_url
     current_user.github.add_deploy_key(params[:id], 'ProjectR', ssh_key) unless deploy_key
+    render :show
+  end
+
+  def show
+    @pulls = repo.rebases.where(state: 'open')
   end
 
   private
@@ -55,6 +60,10 @@ class ProjectsController < ApplicationController
     @repo ||= current_user.repos.find_by(name: params[:id])
   end
   helper_method :repo
+
+  def check_repo
+    send :create unless repo
+  end
 
   def repo_params
     params.require(:repo).permit(:auto_rebase)

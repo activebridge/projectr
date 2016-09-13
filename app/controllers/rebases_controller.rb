@@ -14,7 +14,10 @@ class RebasesController < ApplicationController
 
   def update
     PusherJob.new.perform(rebase)
-    head 200
+    respond_to do |format|
+      format.html { head 200 }
+      format.js
+    end
   end
 
   private
@@ -30,6 +33,8 @@ class RebasesController < ApplicationController
 
   def pull_request
     RebaserJob.new.perform(payload) if ACTIONS.include?(payload['action'])
+    @rebase = Rebase.find_by(github_id: payload['pull_request']['id'])
+    @rebase.update_attributes(state: payload['pull_request']['state'])
   end
 
   def process?

@@ -16,6 +16,8 @@ body {
 }
 
 .logo {
+  max-height: 50vh;
+  min-height: 250px;
   max-width: 300px;
   position: relative;
   z-index: 10000;
@@ -65,7 +67,7 @@ body {
 }
 
 .history {
-  max-width: 574px;
+  max-width: 350px;
   position: relative;
   z-index: 1000;
   display: inline-block;
@@ -77,11 +79,11 @@ body {
 }
 
 .to {
-  border: 17px solid transparent;
+  border: 15px solid transparent;
   width: 0;
   height: 0;
   display: inline-block;
-  border-left: 30px solid #d0d0d0;
+  border-left: 25px solid #d0d0d0;
   margin: 0 20px 0 40px;
   position: relative;
   z-index: 100;
