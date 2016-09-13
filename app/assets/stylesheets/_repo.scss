@@ -5,3 +5,17 @@
 .pl-failure, .pl-error {
   color: red;
 }
+
+td.action {
+  position: absolute;
+  .link {
+    position: absolute;
+    a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+  .spinner {
+    display: none;
+  }
+}
