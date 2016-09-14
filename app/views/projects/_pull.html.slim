@@ -1,8 +1,7 @@
 tr id = "pull_#{pull.id}" class="pl-#{pull.status}"
-  td#name = pull.head
-  td#status = pull.status
-  - if pull.status == 'failure'
-    td.action#rebase
+  td.body__name = pull.head
+  td.body__action
+    - if pull.status == 'failure'
       .link
         = link_to :Rebase, rebase_path(pull), method: :patch, remote: true, id: 'link_rebase'
       .spinner#spinner

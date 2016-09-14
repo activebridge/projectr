@@ -1,17 +1,16 @@
-= form_for repo, url: project_path, method: :patch, remote: true do |f|
-  = f.check_box :auto_rebase
-  = f.label :auto_rebase
+.repository
+  .repository-title
+    = repo.name
 
-h1 Dashboard
-h2= repo.name
+  .repository-form
+    = form_for repo, url: project_path, method: :patch, remote: true do |f|
+      = f.check_box :auto_rebase
+      = f.label :auto_rebase
 
-table
-  thead
-    tr
-      td
-        'name
-      td
-        'status
-      td
-  tbody
-    = render partial: 'pull', collection: @pulls
+  table.pull-list
+    thead.head
+      tr
+        td.head__item colspan=2
+          'Pull requests
+    tbody.body
+      = render partial: 'pull', collection: @pulls

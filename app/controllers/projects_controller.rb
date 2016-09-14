@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @pulls = repo.rebases.where(state: 'open')
+    @pulls = repo.rebases.where(state: 'open').order('created_at')
   end
 
   private

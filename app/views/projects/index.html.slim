@@ -1,3 +1,10 @@
-ul.list
-  - @repos.each do |r|
-    li.list__item= link_to r.full_name, project_path(r.full_name)
+.projects
+  .head
+    span.head__title Projects
+  ul.list
+    - @repos.each do |r|
+      = link_to project_path(r.full_name), class: 'list__link' do
+        li.list__item
+          = r.full_name
+          .created
+            => "Created #{time_ago_in_words(r.created_at)} ago"
