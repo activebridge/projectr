@@ -12,6 +12,7 @@ class Rebase < ApplicationRecord
     self.head = payload['pull_request']['head']['ref']
     self.sha = payload['pull_request']['head']['sha']
     self.state = payload['pull_request']['state']
+    self.number = payload['pull_request']['number']
     save
   end
 end

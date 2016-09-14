@@ -1,21 +1,76 @@
 .pl-success {
-  color: green;
+  background-color: #eaffe4;
+  border: 1px solid #d0fbdb;
+  border-top: 0;
 }
 
-.pl-failure, .pl-error {
-  color: red;
+.pl-error, .pl-failure {
+  background-color: #fff4f4;
+  border: 1px solid #ffd9d9;
+  border-top: 0;
 }
 
-td.action {
-  position: absolute;
-  .link {
-    position: absolute;
+.pl-pending {
+  background-color: #fffcda;
+  border: 1px solid #f5eebc;
+  border-top: 0;
+}
+
+.repository {
+  margin: 15px;
+
+  &-form {
+    display: inline-block;
+    float: right;
+  }
+
+  &-title {
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px;
+  }
+}
+
+.pull-list {
+  border-collapse: collapse;
+  width: 98%;
+  margin: 10px auto;
+
+  .head {
+    text-align: left;
+    background-color: #f8f8f8;
+
+    &__item {
+      padding: 10px;
+      font-size: 20px;
+      border: 1px solid #e8e8e8;
+    }
+  }
+
+  .body {
+
+    &__name, &__action {
+      width: 50%;
+      padding: 18px 15px;
+      vertical-align: middle;
+    }
+
+    &__name {
+      font-size: 16px;
+    }
+
+    &__action {
+      text-align: right;
+    }
+
     a {
       color: black;
+      cursor: pointer;
       text-decoration: none;
     }
   }
-  .spinner {
-    display: none;
-  }
+}
+.spinner {
+  display: none;
+  height: 15px;
 }
