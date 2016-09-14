@@ -8,7 +8,13 @@ class ApplicationJob < ActiveJob::Base
   end
 
   def status
-    @rebase.user.github.status(@rebase.repo, @rebase.head)
+    status = @rebase.user.github.status(@rebase.repo, @rebase.head)
+    status['statuses'][0]['state']
+  end
+
+  def state
+    pull = @rebase.user.github.pull(@rebase.repo, @rebase.number)
+    pull['state']
   end
 
   def github

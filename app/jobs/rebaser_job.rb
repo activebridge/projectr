@@ -15,6 +15,6 @@ class RebaserJob < ApplicationJob
     else
       set_status('success', description: 'Your branch is up to date')
     end
-    @rebase.update_attributes(status: status['statuses'][0]['state'])
+    @rebase.update_attributes(status: status, state: state)
   end
 end
