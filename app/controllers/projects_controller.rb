@@ -14,16 +14,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    git_repo = current_user.github.repo(params[:id])
     @repo = current_user.repos.build(name: params[:id], ssh: git_repo['ssh_url'], collaborators: collaborators)
     @repo.save
+    PullerJob.new.perform(params[:id])
     current_user.github.create_hook(params[:id], 'web', { url: webhook }, { events: ['push', 'pull_request'] }) unless hook_url
     current_user.github.add_deploy_key(params[:id], 'ProjectR', ssh_key) unless deploy_key
     render :show
-  end
-
-  def show
-    @pulls = repo.rebases.where(state: 'open').order('created_at')
   end
 
   def destroy
@@ -33,6 +29,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def git_repo
+    @git_repo ||= current_user.github.repo(params[:id])
+  end
 
   def ssh_key
     @ssh_key = `cat ~/.ssh/id_rsa.#{repo.name.parameterize}.pub`.strip
@@ -66,6 +66,11 @@ class ProjectsController < ApplicationController
     @repo ||= current_user.repos.find_by!(name: params[:id])
   end
   helper_method :repo
+
+  def pulls
+    @pulls ||= repo.rebases.where(state: 'open').order('created_at')
+  end
+  helper_method :pulls
 
   def check_repo
     send :create unless current_user.repos.any? { |r| r.name == params[:id] }

@@ -4,7 +4,7 @@ class RebaserJob < ApplicationJob
   def perform(payload)
     pull_request_id = payload['pull_request']['id']
     @rebase = Rebase.where(github_id: pull_request_id).first_or_initialize
-    @rebase.update_from_payload(payload)
+    @rebase.update_with_payload(payload: payload)
     @repo = Repo.find_by(name: @rebase.repo)
     set_status('pending', description: 'Running...')
     if github.rebase == 'conflict'
