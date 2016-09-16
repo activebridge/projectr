@@ -26,6 +26,12 @@ class ProjectsController < ApplicationController
     @pulls = repo.rebases.where(state: 'open').order('created_at')
   end
 
+  def destroy
+    CleanerJob.perform_later(repo.name, repo.user)
+    repo.destroy
+    redirect_to projects_path
+  end
+
   private
 
   def ssh_key
@@ -44,6 +50,10 @@ class ProjectsController < ApplicationController
     @github_dkeys ||= current_user.github.deploy_keys(params[:id])
   end
 
+  def webhook
+    @webhook ||= webhook_url(host: ENV['host'], port: nil)
+  end
+
   def hook_url
     github_hooks.any? { |h| h['config']['url'] == webhook }
   end
@@ -52,17 +62,13 @@ class ProjectsController < ApplicationController
     github_dkeys.any? { |d| d['key'] == ssh_key.split[0..1].join(' ') }
   end
 
-  def webhook
-    @webhook ||= webhook_url(host: ENV['host'], port: nil)
-  end
-
   def repo
-    @repo ||= current_user.repos.find_by(name: params[:id])
+    @repo ||= current_user.repos.find_by!(name: params[:id])
   end
   helper_method :repo
 
   def check_repo
-    send :create unless repo
+    send :create unless current_user.repos.any? { |r| r.name == params[:id] }
   end
 
   def repo_params

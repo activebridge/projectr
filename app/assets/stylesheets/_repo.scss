@@ -20,8 +20,14 @@
   margin: 15px;
 
   &-form {
-    display: inline-block;
+    display: inline-flex;
     float: right;
+
+    .link-delete {
+      margin-left: 40px;
+      text-decoration: none;
+      color: red;
+    }
   }
 
   &-title {
