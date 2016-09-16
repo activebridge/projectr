@@ -7,6 +7,8 @@
       = f.check_box :auto_rebase
       = f.label :auto_rebase
 
+    = link_to :Delete, project_path(repo.name), method: :delete, class: 'link-delete'
+
   table.pull-list
     thead.head
       tr
