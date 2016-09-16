@@ -21,6 +21,7 @@ body {
   max-width: 300px;
   position: relative;
   z-index: 10000;
+  padding-top: 25px;
 }
 
 .left-sticks, .right-sticks {
@@ -67,12 +68,13 @@ body {
 }
 
 .history {
-  max-width: 350px;
+  max-width: 325px;
   position: relative;
   z-index: 1000;
   display: inline-block;
   vertical-align: middle;
   width: 42%;
+  transition: all 0.5s ease-in-out;
   &.clean {
     vertical-align: bottom;
   }
@@ -99,5 +101,29 @@ body {
     margin: 40px auto 0;
     border-left: 17px solid transparent;
     border-top: 30px solid #d0d0d0;
+  }
+}
+
+@media (min-width: 1400px ) {
+  .history {
+    max-width: 500px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .to {
+    border: 25px solid transparent;
+    border-left: 35px solid #d0d0d0;
+  }
+}
+
+@media (min-width: 1550px) {
+  .history {
+    max-width: 600px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .to {
+    border: 30px solid transparent;
+    border-left: 40px solid #d0d0d0;
   }
 }
