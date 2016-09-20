@@ -27,8 +27,7 @@ class RebasesController < ApplicationController
   end
 
   def push
-    return unless process?
-    RefresherJob.new.perform(payload['repository']['full_name'])
+    RefresherJob.new.perform(payload['repository']['full_name'], base)
   end
 
   def pull_request
@@ -37,8 +36,8 @@ class RebasesController < ApplicationController
     @rebase.update_attributes(state: payload['pull_request']['state'])
   end
 
-  def process?
-    payload['ref'].eql?('refs/heads/master')
+  def base
+    @base ||= payload['ref'].split('/').last
   end
 
   def rebase

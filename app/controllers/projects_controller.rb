@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   def create
     @repo = current_user.repos.build(name: params[:id], ssh: git_repo['ssh_url'], collaborators: collaborators)
     @repo.save
-    PullerJob.new.perform(params[:id])
+    RefresherJob.new.perform(params[:id], git_repo['default_branch'])
     current_user.github.create_hook(params[:id], 'web', { url: webhook }, { events: ['push', 'pull_request'] }) unless hook_url
     current_user.github.add_deploy_key(params[:id], 'ProjectR', ssh_key) unless deploy_key
     render :show
