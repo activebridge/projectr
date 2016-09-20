@@ -19,10 +19,8 @@ class ApplicationJob < ActiveJob::Base
 
   def cleaner_config(path, name)
     config = File.read(path)
-    keys = config.split(" \n").each { |a| a << " \n" }
-    keys.each do |k|
-      config.gsub!(k, '') if k.include?("Host #{name.parameterize} ")
-    end
+    key = config.match(/\n.*#{name.parameterize}.*\n.*\n.*\n.*\n/).to_s
+    config.gsub!(key, '')
     File.open(path, 'w') { |file| file.puts config }
   end
 
