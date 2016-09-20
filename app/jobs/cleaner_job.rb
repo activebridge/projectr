@@ -10,5 +10,6 @@ class CleanerJob < ApplicationJob
     user.github.remove_hook(name, @hook.id) if @hook
     `rm ~/.ssh/id_rsa.#{name.parameterize}`
     `rm ~/.ssh/id_rsa.#{name.parameterize}.pub`
+    cleaner_config(File.expand_path('~/.ssh/config'), name)
   end
 end
