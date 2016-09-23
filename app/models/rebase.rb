@@ -16,10 +16,11 @@ class Rebase < ApplicationRecord
 
   def initialize_payload_value(payload)
     self.repo = payload['repository']['full_name']
-    self.base = payload['pull_request']['base']['ref']
-    self.head = payload['pull_request']['head']['ref']
-    self.sha = payload['pull_request']['head']['sha']
-    self.state = payload['pull_request']['state']
-    self.number = payload['pull_request']['number']
+    pr = payload['pull_request']
+    self.base = pr['base']['ref']
+    self.head = pr['head']['ref']
+    self.sha = pr['head']['sha']
+    self.state = pr['state']
+    self.number = pr['number']
   end
 end
