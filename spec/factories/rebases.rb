@@ -1,9 +1,11 @@
 FactoryGirl.define do
-  factory :rebasis do
-    user nil
-    repo "MyString"
-    base "MyString"
-    head "MyString"
-    sha "MyString"
+  factory :rebase do
+    repo
+    base 'master'
+    head 'head'
+    sha 'sha'
+    state 'open'
+    status 'success'
+    number 2
   end
 end
