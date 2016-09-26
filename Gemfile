@@ -26,6 +26,10 @@ group :development, :test do
   gem 'simplecov'
   gem 'ffaker'
   gem 'awesome_print'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'rspec-retry'
+  gem 'rack_session_access'
 end
 
 group :development do

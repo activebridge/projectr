@@ -1,9 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Repo, type: :model do
+  let(:git_repo) do
+    {
+      'ssh_url' => 'git@github.com:name.git',
+      'default_branch' => 'master'
+    }
+  end
+  let(:collaborator) { double(id: 258) }
+  let(:github) { double(repo: git_repo, collaborators: [collaborator]) }
+
   describe 'validates' do
+    before do
+      allow_any_instance_of(User).to receive(:github).and_return(github)
+    end
+
+    subject { Repo.new(user: create(:user)) }
+
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:ssh) }
   end
 
   describe 'associations' do
