@@ -1,11 +1,12 @@
 FactoryGirl.define do
   factory :rebase do
     repo
-    base 'master'
-    head 'head'
-    sha 'sha'
-    state 'open'
-    status 'success'
-    number 2
+    base { FFaker::Internet.domain_word }
+    head { FFaker::Internet.domain_word }
+    sha { FFaker::IdentificationMX.rfc }
+    state 'close'
+    status 'failure'
+    number 5
+    sequence(:github_id) { |n| n }
   end
 end

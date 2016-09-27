@@ -5,6 +5,6 @@ FactoryGirl.define do
     username { FFaker::Name.first_name }
     avatar 'MyString'
     token { SecureRandom.base64 }
-    github_id '12345'
+    sequence(:github_id) { |n| n }
   end
 end

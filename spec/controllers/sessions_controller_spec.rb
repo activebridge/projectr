@@ -11,7 +11,7 @@ RSpec.describe SessionsController, type: :controller do
 
     context 'when authenticate successful' do
       before do
-        allow_any_instance_of(ApplicationController).to receive(:github).and_return(double(exchange_code_for_token: double('[]': token)))
+        allow_any_instance_of(described_class).to receive(:github).and_return(double(exchange_code_for_token: double('[]': token)))
 
         allow(Octokit::Client).to receive(:new).and_return(double(user: github_user))
 
