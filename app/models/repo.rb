@@ -14,7 +14,7 @@ class Repo < ApplicationRecord
 
   def set_github_data
     self.ssh = git_repo['ssh_url']
-    self.collaborators = collaborators
+    self.collaborators = git_collaborators
   end
 
   def init_project
@@ -30,8 +30,8 @@ class Repo < ApplicationRecord
     @git_repo ||= user.github.repo(name)
   end
 
-  def collaborators
-    @collaborators ||= user.github.collaborators(name).map(&:id)
+  def git_collaborators
+    @git_collaborators ||= user.github.collaborators(name).map(&:id)
   end
 
   def refresh_all
