@@ -4,34 +4,11 @@ RSpec.describe RebasesController, type: :controller do
   let(:user) { create(:user) }
   let(:repo) { create(:repo, user: user) }
   let(:rebase) { create(:rebase, repo: repo.name) }
-  let(:admin_repo) do
-    double(
-      full_name: FFaker::Name.name.parameterize,
-      permissions: double(admin: true),
-      created_at: 1.day.ago
-    )
-  end
-  let(:git_repo) do
-    {
-      'ssh_url' => "git@github.com:#{admin_repo.full_name}.git",
-      'default_branch' => 'master'
-    }
-  end
+  let(:admin_repo) { build(:admin_repo, permissions: double(admin: true)) }
+  let(:git_repo) { build(:git_repo) }
   let(:collaborator) { double(id: user.github_id) }
-  let(:webhook) do
-    {
-      'type' => 'Repository',
-      'name' => 'web',
-      'events' => %w(push pull_request),
-      'config' => { 'url' => 'http://3deec0f4.ngrok.io/webhook' }
-    }
-  end
-  let(:deploy_key) do
-    {
-      'key' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLpt',
-      'title' => 'ProjectR'
-    }
-  end
+  let(:webhook) { build(:webhook) }
+  let(:deploy_key) { build(:deploy_key) }
   let(:github) do
     double(
       repos: [admin_repo],

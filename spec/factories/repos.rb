@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :repo do
     user
-    name { FFaker::Name.name.parameterize }
-    ssh "git@github.com:#{FFaker::Name.name.parameterize}.git"
+    sequence(:name) { |n| "repo#{n}" }
+    sequence(:ssh) { |n| "git@github.com:repo#{n}.git" }
   end
 end

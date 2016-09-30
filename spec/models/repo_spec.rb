@@ -1,12 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Repo, type: :model do
-  let(:git_repo) do
-    {
-      'ssh_url' => 'git@github.com:name.git',
-      'default_branch' => 'master'
-    }
-  end
+  let(:git_repo) { build(:git_repo) }
   let(:collaborator) { double(id: 258) }
   let(:github) { double(repo: git_repo, collaborators: [collaborator]) }
 
