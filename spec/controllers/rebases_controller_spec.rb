@@ -24,7 +24,7 @@ RSpec.describe RebasesController, type: :controller do
   subject { response }
 
   before do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    allow_any_instance_of(described_class).to receive(:current_user).and_return(user)
     allow(Octokit::Client).to receive(:new).and_return(github)
     allow(RefresherJob).to receive(:new).and_return(double(perform: []))
     allow(RebaserJob).to receive(:new).and_return(double(perform: []))
