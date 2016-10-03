@@ -11,6 +11,13 @@ RSpec.describe RebaserJob, type: :job do
   let(:deploy_key) { build(:deploy_key) }
   let(:status) { { 'statuses' => [{ 'state' => 'pending' }] } }
   let(:pull) { { 'state' => 'open' } }
+  let(:pull_request) { build(:pull_request) }
+  let(:payload) do
+    {
+      'repository' => { 'full_name' => repo.name },
+      'pull_request' => pull_request
+    }
+  end
   let(:github) do
     double(
       repos: [admin_repo],
@@ -24,21 +31,6 @@ RSpec.describe RebaserJob, type: :job do
       status: status,
       pull: pull
     )
-  end
-  let(:pull_request) do
-    {
-      'id' => rebase.github_id,
-      'base' => { 'ref' => 'base' },
-      'head' => { 'ref' => 'head', 'sha' => 'sha' },
-      'state' => 'open',
-      'number' => 2
-    }
-  end
-  let(:payload) do
-    {
-      'repository' => { 'full_name' => repo.name },
-      'pull_request' => pull_request
-    }
   end
 
   before do
@@ -77,6 +69,6 @@ RSpec.describe RebaserJob, type: :job do
       expect(described_class.perform_now(payload))
     end
 
-    it { expect(Rebase.find_by(repo: repo.name).status).to eq('success') }
+    it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
   end
 end
