@@ -1,6 +1,6 @@
 class RebasesController < ApplicationController
   EVENTS = %w(push pull_request).freeze
-  ACTIONS = %w(opened reopened synchronize).freeze
+  ACTIONS = %w(opened reopened synchronize edited).freeze
 
   skip_before_action :verify_authenticity_token, only: :create
   skip_before_action :require_user, only: :create

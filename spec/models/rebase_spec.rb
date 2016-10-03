@@ -23,23 +23,10 @@ RSpec.describe Rebase, type: :model do
 
   describe '#update_with_payload' do
     let(:instance) { described_class.new }
-    let(:params) do
-      {
-        repo: 'repo', base: 'base',
-        head: 'head', sha: 'sha', state: 'open'
-      }
-    end
-    let(:pull_request) do
-      {
-        'base' => { 'ref' => params[:base] },
-        'head' => { 'ref' => params[:head], 'sha' => params[:sha] },
-        'state' => params[:state],
-        'number' => 2
-      }
-    end
+    let(:pull_request) { build(:pull_request) }
     let(:payload) do
       {
-        'repository' => { 'full_name' => params[:repo] },
+        'repository' => { 'full_name' => 'repo' },
         'pull_request' => pull_request
       }
     end
@@ -55,5 +42,6 @@ RSpec.describe Rebase, type: :model do
     it { is_expected.to change(instance, :state) }
     it { is_expected.to change(instance, :number) }
     it { is_expected.to change(instance, :status) }
+    it { is_expected.to change(instance, :title) }
   end
 end
