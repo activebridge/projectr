@@ -21,13 +21,6 @@ RSpec.describe CleanerJob, type: :job do
       remove_hook: webhook
     )
   end
-  let(:content) do
-    "\nHost #{repo.name} github.com
-    Hostname github.com
-    IdentityFile ~/.ssh/id_rsa.#{repo.name}\n \n\n"
-  end
-  let(:file_path) { File.expand_path('~/.ssh/config') }
-  let(:ssh_path) { File.expand_path("~/.ssh/id_rsa.#{repo.name}") }
 
   before do
     allow(RefresherJob).to receive(:new).and_return(double(perform: []))
@@ -36,10 +29,17 @@ RSpec.describe CleanerJob, type: :job do
   end
 
   context 'deletes ssh key' do
+    let(:ssh_path) { File.expand_path("~/.ssh/id_rsa.#{repo.name}") }
     it { expect(File.file?(ssh_path)).to be_falsey }
   end
 
   context 'clears config file' do
+    let(:content) do
+      "\nHost #{repo.name} github.com
+      Hostname github.com
+      IdentityFile ~/.ssh/id_rsa.#{repo.name}\n \n\n"
+    end
+    let(:file_path) { File.expand_path('~/.ssh/config') }
     it { expect(File.read(file_path)).not_to include(content) }
   end
 end

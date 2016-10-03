@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PusherJob, type: :job do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
   let(:repo) { create(:repo, user: user) }
   let(:rebase) { create(:rebase, repo: repo.name) }
   let(:admin_repo) { build(:admin_repo, permissions: double(admin: true)) }
