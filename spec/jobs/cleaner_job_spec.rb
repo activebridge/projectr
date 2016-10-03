@@ -32,7 +32,7 @@ RSpec.describe CleanerJob, type: :job do
   before do
     allow(RefresherJob).to receive(:new).and_return(double(perform: []))
     allow(Octokit::Client).to receive(:new).and_return(github)
-    expect(CleanerJob.perform_now(repo.name, user))
+    expect(described_class.perform_now(repo.name, user))
   end
 
   context 'deletes ssh key' do
