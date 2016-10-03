@@ -1,0 +1,47 @@
+.contacts {
+  color: #777777;
+
+  .add-to-slack {
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+
+  .logo {
+    max-height: 30vh;
+    min-height: 150px;
+    max-width: 300px;
+  }
+
+  .description {
+    z-index: 1;
+    position: relative;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    font-size: larger;
+  }
+
+  &-container {
+    width: 15%;
+    margin: 10% auto 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  &-section {
+    text-align: left;
+    line-height: 2;
+  }
+
+  .information {
+    display: inline;
+    position: absolute;
+  }
+
+  .icon {
+    padding-right: 15px;
+    width: 30px;
+  }
+}
