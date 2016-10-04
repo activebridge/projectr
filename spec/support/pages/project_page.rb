@@ -2,7 +2,7 @@ require 'support/base_page'
 
 class ProjectPage < BasePage
   def open_repo
-    find(:link, class: 'list__link').trigger('click')
+    find(:link, class: 'link').trigger('click')
   end
 
   def update_repo
