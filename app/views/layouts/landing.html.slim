@@ -1,9 +1,13 @@
 doctype 5
 html
   head
+    = favicon_link_tag 'favicon.ico'
     title ProjectR - Keep your commits history clean
     = stylesheet_link_tag 'landing', media: 'all'
+    = csrf_meta_tags
     meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    meta name = 'description' content=t('meta.description')
 
   body
+    .body-schema = render 'layouts/schema'
     = yield
