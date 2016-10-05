@@ -1,6 +1,5 @@
 li.pull-list__item
-  .status
-    div id = "pull_#{pull.id}" class="pl-#{pull.status}"
+  div id = "pull_#{pull.id}" class="pl-#{pull.status}"
   .item-title
     = pull.title
   - if pull.status == 'failure'
