@@ -56,7 +56,7 @@ feature 'Project' do
     scenario 'Update project' do
       visit "projects/#{repo.name}"
       projects_page.update_repo
-      expect(find(:css, '#repo_auto_rebase').checked?).to eq(true)
+      expect(find('#repo_auto_rebase', visible: false).checked?).to eq(true)
     end
 
     scenario 'Destroy project' do

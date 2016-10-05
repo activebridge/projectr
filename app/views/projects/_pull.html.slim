@@ -1,8 +1,10 @@
-tr id = "pull_#{pull.id}" class="pl-#{pull.status}"
-  td.body__name = pull.head
-  td.body__action
-    - if pull.status == 'failure'
-      .link
-        = link_to :Rebase, rebase_path(pull), method: :patch, remote: true, id: 'link_rebase'
+li.pull-list__item
+  .status
+    div id = "pull_#{pull.id}" class="pl-#{pull.status}"
+  .item-title
+    = pull.head
+  - if pull.status == 'failure'
+    .action
+      = link_to :rebase, rebase_path(pull), method: :patch, remote: true, id: 'link_rebase'
       .spinner#spinner
         = inline_svg 'spinner.svg'

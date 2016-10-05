@@ -6,7 +6,7 @@ class ProjectPage < BasePage
   end
 
   def update_repo
-    find(:css, '#repo_auto_rebase').set(true)
+    find('#repo_auto_rebase', visible: false).trigger('click')
   end
 
   def destroy_repo

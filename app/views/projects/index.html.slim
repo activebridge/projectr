@@ -1,5 +1,5 @@
 .head
-  = inline_svg 'projects.svg', class: 'title'
+  = inline_svg 'logo-title.svg', class: 'title'
 ul.list
   - @repos.each do |r|
     = link_to project_path(r.full_name), class: 'link' do
