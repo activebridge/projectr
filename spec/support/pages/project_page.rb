@@ -2,11 +2,11 @@ require 'support/base_page'
 
 class ProjectPage < BasePage
   def open_repo
-    find(:link, class: 'list__link').trigger('click')
+    find(:link, class: 'link').trigger('click')
   end
 
   def update_repo
-    find(:css, '#repo_auto_rebase').set(true)
+    find('#repo_auto_rebase', visible: false).trigger('click')
   end
 
   def destroy_repo

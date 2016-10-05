@@ -1,82 +1,93 @@
+@import 'checkbox';
+
+.pl-success, .pl-error, .pl-failure, .pl-pending {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
 .pl-success {
-  background-color: #eaffe4;
-  border: 1px solid #d0fbdb;
-  border-top: 0;
+  background-color: #7db381;
 }
 
 .pl-error, .pl-failure {
-  background-color: #fff4f4;
-  border: 1px solid #ffd9d9;
-  border-top: 0;
+  background-color: #f15a3f;
 }
 
 .pl-pending {
-  background-color: #fffcda;
-  border: 1px solid #f5eebc;
-  border-top: 0;
+  background-color: #fff584;
 }
+
 
 .repository {
   margin: 15px;
+  padding: 25px;
+
+  &-head {
+    display: flex;
+    justify-content: space-between;
+  }
 
   &-form {
     display: inline-flex;
     float: right;
-
-    .link-delete {
-      margin-left: 40px;
-      text-decoration: none;
-      color: red;
-    }
   }
 
   &-title {
     display: inline-block;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 25px;
+    color: #454545;
   }
 }
 
 .pull-list {
-  border-collapse: collapse;
-  width: 98%;
-  margin: 10px auto;
+  list-style-type: none;
+  padding: 0px;
 
-  .head {
-    text-align: left;
-    background-color: #f8f8f8;
-
-    &__item {
-      padding: 10px;
-      font-size: 20px;
-      border: 1px solid #e8e8e8;
-    }
+  &__item {
+    background: #656565;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .body {
+  .status {
+    padding: 15px;
+  }
 
-    &__name, &__action {
-      width: 50%;
-      padding: 18px 15px;
-      vertical-align: middle;
-    }
+  .item-title {
+    color: white;
+    font-size: 20px;
+    margin-right: auto;
+    padding: 15px;
+ }
 
-    &__name {
-      font-size: 16px;
-    }
-
-    &__action {
-      text-align: right;
-    }
-
+  .action {
+    padding: 1px;
+    min-width: 55px;
+    margin-right: 10px;
+    text-align: center;
+    background: #464545;
+    border-radius: 7px;
     a {
-      color: black;
       cursor: pointer;
       text-decoration: none;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      vertical-align: text-bottom;
     }
   }
 }
+
 .spinner {
   display: none;
   height: 15px;
+  position: relative;
+}
+
+.delete {
+  width: 25px;
+  fill: #454545;
 }

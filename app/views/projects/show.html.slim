@@ -1,18 +1,17 @@
 .repository
-  .repository-title
-    = repo.name
+  .repository-head
+    .repository-title
+      = repo.name
 
-  .repository-form
-    = form_for repo, url: project_path, method: :patch, remote: true do |f|
-      = f.check_box :auto_rebase
-      = f.label :auto_rebase
+    .repository-form
+      = form_for repo, url: project_path, method: :patch, remote: true do |f|
+        .flatCheckbox
+          = f.check_box :auto_rebase, class: 'auto-rebase'
+          label for='repo_auto_rebase'
+          div
 
-    = link_to :Delete, project_path(repo.name), method: :delete, class: 'link-delete'
+      = link_to project_path(repo.name), method: :delete, class: 'link-delete' do
+        = inline_svg 'trash.svg', class: 'delete'
 
-  table.pull-list
-    thead.head
-      tr
-        td.head__item colspan=2
-          'Pull requests
-    tbody.body
-      = render partial: 'pull', collection: pulls
+  ul.pull-list
+    = render partial: 'pull', collection: pulls

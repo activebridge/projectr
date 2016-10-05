@@ -1,10 +1,10 @@
-.projects
-  .head
-    span.head__title Projects
-  ul.list
-    - @repos.each do |r|
-      = link_to project_path(r.full_name), class: 'list__link' do
-        li.list__item
+.head
+  = inline_svg 'logo-title.svg', class: 'title'
+ul.list
+  - @repos.each do |r|
+    = link_to project_path(r.full_name), class: 'link' do
+      li.list__item
+        .title
           = r.full_name
-          .created
-            => "Created #{time_ago_in_words(r.created_at)} ago"
+        .created
+          => "created #{time_ago_in_words(r.created_at)} ago"
