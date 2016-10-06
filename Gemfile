@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim'
 gem 'octokit'
 gem 'inline_svg'
+gem 'rollbar'
 
 # Use Capistrano for deployment
 gem 'capistrano-passenger'
