@@ -38,6 +38,16 @@ RSpec.describe RebaserJob, type: :job do
     allow(Octokit::Client).to receive(:new).and_return(github)
   end
 
+  context 'when work in progress' do
+    let(:pull_request) { build(:pull_request, title: 'title #wip') }
+
+    before do
+      expect(described_class.perform_now(payload))
+    end
+
+    it { expect(Rebase.find_by(repo: repo.name).status).to eq('pending') }
+  end
+
   context 'when conflict' do
     let(:status) { { 'statuses' => [{ 'state' => 'error' }] } }
 

@@ -22,5 +22,6 @@ class Rebase < ApplicationRecord
     self.sha = pr['head']['sha']
     self.state = pr['state']
     self.number = pr['number']
+    self.title = pr['title']
   end
 end

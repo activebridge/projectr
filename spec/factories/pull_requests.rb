@@ -4,6 +4,7 @@ FactoryGirl.define do
     head { { 'ref' => 'head', 'sha' => 'sha' } }
     state 'open'
     number 2
+    title 'title'
 
     initialize_with { attributes.stringify_keys }
   end

@@ -1,8 +1,7 @@
 li.pull-list__item
-  .status
-    div id = "pull_#{pull.id}" class="pl-#{pull.status}"
+  div id = "pull_#{pull.id}" class="pl-#{pull.status}"
   .item-title
-    = pull.head
+    = pull.title
   - if pull.status == 'failure'
     .action
       = link_to :rebase, rebase_path(pull), method: :patch, remote: true, id: 'link_rebase'
