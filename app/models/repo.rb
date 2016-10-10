@@ -2,7 +2,7 @@ class Repo < ApplicationRecord
   include SSH
 
   belongs_to :user
-  has_many :rebases, primary_key: :name, foreign_key: :repo, class_name: 'Rebase'
+  has_many :rebases, primary_key: :name, foreign_key: :repo, class_name: 'Rebase', dependent: :destroy
 
   validates :name, :ssh, presence: true, uniqueness: true
 

@@ -6,7 +6,7 @@ class RefresherJob < ApplicationJob
     pulls = user.github.pulls(repo).select { |a| a['base']['ref'] == base }
     pulls.each do |pull|
       pr = user.github.pull(repo, pull['number'])
-      RebaserJob.new.perform('repository' => { 'full_name' => repo }, 'pull_request' => pr)
+      RebaserJob.perform_now('repository' => { 'full_name' => repo }, 'pull_request' => pr)
     end
   end
 end
