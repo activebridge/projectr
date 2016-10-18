@@ -1,11 +1,17 @@
 = inline_svg 'left_sticks.svg', class: 'left-sticks'
 = inline_svg 'right_sticks.svg', class: 'right-sticks'
-= link_to Octokit.authorize_url(ENV['github_token'], scope: 'repo,user:email'), title: 'Start NOW' do
+.main
   = inline_svg 'projectr.svg', class: :logo
-br
-=> inline_svg 'ugly.svg', class: :history
-span.to>
-= inline_svg 'clean.svg', class: 'history clean'
-
+  br
+  => inline_svg 'ugly.svg', class: 'history ugly'
+  span.to>
+  = inline_svg 'clean.svg', class: 'history clean'
+.slack-block
+  = link_to Octokit.authorize_url(ENV['github_token'], scope: 'repo,user:email'), title: 'Start NOW', class: 'start-button' do
+    = inline_svg 'start_button.svg', class: 'start-button-svg'
+  = inline_svg 'slack_title.svg', class: 'slack-title'
+  p = t(:slack_info)
+  a href='https://slack.com/oauth/pick_reflow?scope=incoming-webhook&client_id=4033344265.85008077684' target='_blank'
+    = inline_svg 'slack_button.svg', class: 'slack-button'
 .left-pattern
 .right-pattern

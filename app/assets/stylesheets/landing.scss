@@ -23,7 +23,6 @@ body {
   max-width: 300px;
   position: relative;
   z-index: 10000;
-  padding-top: 25px;
 }
 
 .left-sticks, .right-sticks {
@@ -69,8 +68,13 @@ body {
   repeating-linear-gradient(90deg, transparent, #adadad 1px, transparent 1px, transparent 12px);
 }
 
+.main {
+  padding-top: 14vh;
+  min-height: 70vh;
+}
+
 .history {
-  max-width: 325px;
+  max-width: 400px;
   position: relative;
   z-index: 1000;
   display: inline-block;
@@ -79,6 +83,36 @@ body {
   transition: all 0.5s ease-in-out;
   &.clean {
     vertical-align: bottom;
+  }
+}
+
+.slack-block {
+  margin: 0 auto;
+  position: relative;
+  z-index: 100;
+  top: 130px;
+  padding: 170px 50px 200px;
+  background: rgba(0, 0, 0, 0.76);
+  text-align: center;
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 80%;
+    max-width: 494px;
+    margin: 30px auto 40px;
+    color: #a7a7a7;
+    line-height: 1.3;
+  }
+  .slack-button {
+    cursor: pointer;
+  }
+  .start-button {
+    display: inline-block;
+    z-index: 100;
+    position: absolute;
+    clear: both;
+    top: -30px;
+    left: 0;
+    right: 0;
   }
 }
 
@@ -97,36 +131,22 @@ body {
 @media (max-width: 750px) {
   .history {
     width: 100%;
+    &.ugly {
+      margin-top: 40px;
+    }
   }
   .to {
     display: block;
-    margin: 40px auto 0;
-    border-left: 17px solid transparent;
-    border-top: 30px solid #d0d0d0;
-  }
-}
-
-@media (min-width: 1400px ) {
-  .history {
-    max-width: 500px;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .to {
-    border: 25px solid transparent;
-    border-left: 35px solid #d0d0d0;
+    margin: 30px auto 0;
+    border-left: 15px solid transparent;
+    border-top: 20px solid #d0d0d0;
   }
 }
 
 @media (min-width: 1550px) {
   .history {
-    max-width: 600px;
+    max-width: 500px;
     transition: all 0.5s ease-in-out;
-  }
-
-  .to {
-    border: 30px solid transparent;
-    border-left: 40px solid #d0d0d0;
   }
 }
 

@@ -35,7 +35,7 @@
                     </mask>
                     <use id="element-bg" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" xlink:href="#history-bg"></use>
                     <path d="M-9.55055982,129.906251 L511.732926,129.906251 L511.732926,153.994938 L525.619725,166.370327" id="Path-2258" stroke="#979797" stroke-width="7" sketch:type="MSShapeGroup" mask="url(#mask-3)"></path>
-                    <path d="M-11.9081726,319 L615,319" id="Line" stroke="#707070" stroke-width="4" stroke-linecap="round" stroke-dasharray="10,12" sketch:type="MSShapeGroup" mask="url(#mask-3)"></path>
+                    <path d="M-11.9081726,319 L615,319" id="Line" stroke="#707070" stroke-width="4" stroke-linecap="round" stroke-dasharray="10,12" sketch:type="MSShapeGroup" mask="url(#mask-31)"></path>
                     <g id="merge-blue-1" transform="translate(17.000000, 117.000000)">
                         <g id="Path-2227">
                             <use stroke="#20A5FF" stroke-width="7" sketch:type="MSShapeGroup" xlink:href="#path-4"></use>
