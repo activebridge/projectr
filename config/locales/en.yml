@@ -1,6 +1,6 @@
 en:
   meta:
     description:
-      ProjectR helps you to keep your commits history clean.
+      ProjectR is github tool helping you to keep your commit's history clean.
   hello: "Hello world"
-  slack_info: This magic app helps you to keep clean your github repository and rebase branches also notify you, if your branch has any conflicts. You can to set "auto rebase" and app will automatically do rebase.
+  slack_info: This magic app helps you to keep clean your github repository and rebase branches. Also it notifies you, if your branch has any conflicts. You can set "auto rebase" and app will automatically do rebase.
