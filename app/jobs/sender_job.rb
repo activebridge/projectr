@@ -1,31 +1,30 @@
 class SenderJob < ApplicationJob
   queue_as :default
 
-  def perform(pr, status)
-    uri = URI.parse(ENV['slack_webhook'])
+  def perform(attr)
+    uri = URI.parse(attr[:repo][:channel_url])
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.body = params_message(pr, status).to_json
+    request.body = params_message(attr).to_json
     http.request(request)
   end
 
   private
 
-  def params_message(pr, status)
+  def params_message(attr)
     {
-      channel: 'projectr',
       username: 'ProjectR',
-      icon_emoji: ':projectr:',
-      attachments: attachments(pr, status)
+      icon_url: I18n.t(:icon_url),
+      attachments: attachments(attr)
     }
   end
 
-  def attachments(pr, status)
-    if status == 'success'
-      success_template(pr)
+  def attachments(attr)
+    if attr[:status] == 'test'
+      test_template(attr[:repo])
     else
-      error_template(pr)
+      send "#{status}_template", attr[:rebase]
     end
   end
 
@@ -33,9 +32,9 @@ class SenderJob < ApplicationJob
     [
       {
         color: '#36a64f',
-        title: "Pull Request ##{pr.number}",
-        title_link: "https://github.com/#{pr.repo}/pull/#{pr.number}",
-        text: I18n.t('message.success')
+        title: I18n.t(:title_template, number: pr.number),
+        title_link: I18n.t(:title_link, repo: pr.repo, number: pr.number),
+        text: I18n.t(:message_success)
       }
     ]
   end
@@ -44,10 +43,18 @@ class SenderJob < ApplicationJob
     [
       {
         color: '#d50200',
-        title: "Pull Request ##{pr.number}",
-        title_link: "https://github.com/#{pr.repo}/pull/#{pr.number}",
-        text: I18n.t('message.error'),
+        title: I18n.t(:title_template, number: pr.number),
+        title_link: I18n.t(:title_link, repo: pr.repo, number: pr.number),
+        text: I18n.t(:message_error, base: pr.base),
         mrkdwn_in: ['text']
+      }
+    ]
+  end
+
+  def test_template(repo)
+    [
+      {
+        text: I18n.t(:message_test, repo: repo.name)
       }
     ]
   end

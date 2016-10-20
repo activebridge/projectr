@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930102516) do
+ActiveRecord::Schema.define(version: 20161019094306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160930102516) do
     t.datetime "updated_at",                    null: false
     t.integer  "collaborators", default: [],                 array: true
     t.boolean  "auto_rebase",   default: false
+    t.string   "channel_url"
     t.index ["name"], name: "index_repos_on_name", using: :btree
     t.index ["user_id"], name: "index_repos_on_user_id", using: :btree
   end

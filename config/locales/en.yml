@@ -2,13 +2,25 @@ en:
   meta:
     description:
       ProjectR is github tool helping you to keep your commit's history clean.
-  hello: "Hello world"
   slack_info: This magic app helps you to keep clean your github repository and rebase branches. Also it notifies you, if your branch has any conflicts. You can set "auto rebase" and app will automatically do rebase.
-  status:
-    work_in_progress: "branch has 'work in progress' label."
-    conflict: branch has conflicts that must be resolved.
-    fail: branch is out of date. Click Details to rebase
-    success: Your branch is up to date
-  message:
-    error: "Branch has conflicts that must be resolved.\nTry do command:\n ```git pull origin <base branch> --rebase``` Fix your conflicts and then commit the result"
-    success: This branch has no conflicts with the base branch.
+  wip: "branch has 'work in progress' label."
+  conflict: branch has conflicts that must be resolved.
+  fail: branch is out of date. Click Details to rebase
+  success: Your branch is up to date
+
+  welcome:
+    contact:
+      email: rebase@googlegroups.com
+      phone: +380638645576
+
+  message_error: "Branch has conflicts that must be resolved.\nTry do command:\n ```git pull origin %{base} --rebase``` Fix your conflicts and then commit the result"
+  message_success: This branch has no conflicts with the base branch.
+  message_test: "Test message for %{repo}"
+  test: Test message
+  icon_url: https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-09-28/85076239797_111d636db6d3fb4a8c9d_96.png
+
+  placeholder:
+    webhook: Enter your webhook url
+
+  title_template: 'Pull request #%{number}'
+  title_link: 'https://github.com/%{repo}/pull/%{number}'

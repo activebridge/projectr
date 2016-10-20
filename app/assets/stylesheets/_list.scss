@@ -28,7 +28,7 @@
     }
   }
 
-  .title {
+  &__title {
     color: white;
     font-size: 20px;
     transition: all 0.5s ease-in-out;
@@ -62,7 +62,7 @@
 }
 
 @media (max-width: 800px) {
-  .title {
+  .list__title {
     font-size: 15px !important;
     transition: all 0.5s ease-in-out;
   }
