@@ -13,6 +13,7 @@ gem 'slim'
 gem 'octokit'
 gem 'inline_svg'
 gem 'rollbar'
+gem 'sitemap_generator'
 
 # Use Capistrano for deployment
 gem 'capistrano-passenger'
