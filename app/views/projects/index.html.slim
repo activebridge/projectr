@@ -4,7 +4,7 @@ ul.list
   - @repos.each do |r|
     = link_to project_path(r.full_name), class: 'link' do
       li.list__item
-        .title
+        .list__title
           = r.full_name
         .created
           => "created #{time_ago_in_words(r.created_at)} ago"

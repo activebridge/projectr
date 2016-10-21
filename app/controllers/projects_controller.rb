@@ -37,6 +37,6 @@ class ProjectsController < ApplicationController
   end
 
   def repo_params
-    params.require(:repo).permit(:auto_rebase)
+    params.require(:repo).permit(:auto_rebase, :channel_url)
   end
 end

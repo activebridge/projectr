@@ -15,14 +15,16 @@ class RebaserJob < ApplicationJob
 
   def rebase_pr(rebase, repo)
     if work_in_progress(rebase.title)
-      set_status('pending', description: "branch has 'work in progress' label.")
+      set_status('pending', description: I18n.t(:wip))
     elsif github.rebase == 'conflict'
-      set_status('error', description: 'branch has conflicts that must be resolved')
+      set_status('error', description: I18n.t(:conflict))
+      SenderJob.new.perform(repo: repo, rebase: rebase, status: 'error') if repo.channel_url
     elsif github.rebase == 'fail'
-      set_status('failure', description: 'branch is out of date. Click Details to rebase', target_url: edit_rebase_url(rebase, host: ENV['host']))
+      set_status('failure', description: I18n.t(:fail), target_url: edit_rebase_url(rebase, host: ENV['host']))
       PusherJob.new.perform(rebase) if repo.auto_rebase
     else
-      set_status('success', description: 'Your branch is up to date')
+      set_status('success', description: I18n.t(:success))
+      SenderJob.new.perform(repo: repo, rebase: rebase, status: 'success') if repo.channel_url
     end
   end
 

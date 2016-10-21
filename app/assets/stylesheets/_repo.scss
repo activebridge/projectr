@@ -24,6 +24,7 @@
   padding: 25px;
 
   &-head {
+    padding-top: 5vh;
     display: flex;
     justify-content: space-between;
   }
@@ -87,4 +88,35 @@
 .delete {
   width: 25px;
   fill: #454545;
+}
+
+.channel-form {
+  .channel-url {
+    text-align: center;
+    height: 30px;
+    font-size: 15px;
+    color: #656565;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #a8b7ae;
+    width: 50vw;
+    transition: background 0.4s ease-in-out;
+    &:focus {
+      background: #d0d0d0;
+    }
+  }
+  .channel-button {
+    border: 2px solid #656565;
+    margin: 15px 0 0 15px;
+    font-size: 14px;
+    line-height: 15px;
+    padding: 5px;
+    min-width: 60px;
+    color: #656565;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      background: #d0d0d0;
+    }
+  }
 }

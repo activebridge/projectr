@@ -13,3 +13,4 @@ module Projectr
 end
 
 Rails.application.secrets.each { |key, value| ENV[key.to_s] ||= value }
+I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
