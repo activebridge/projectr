@@ -1,3 +1,16 @@
+.icons-block
+  a href='https://plus.google.com/u/0/+ActivebridgeTeam' target='_blank'
+    = inline_svg 'google-plus.svg', class: 'social-icon google-plus'
+
+  a href='https://www.linkedin.com/company/active-bridge' target='_blank'
+    = inline_svg 'linkedin.svg', class: 'social-icon linkedin'
+
+  a href='https://www.facebook.com/ActiveBridgeTeam' target='_blank'
+    = inline_svg 'facebook.svg', class: 'social-icon facebook'
+
+  a href='https://twitter.com/ActiveBridge' target='_blank'
+    = inline_svg 'twitter.svg', class: 'social-icon twitter'
+
 = inline_svg 'left_sticks.svg', class: 'left-sticks'
 = inline_svg 'right_sticks.svg', class: 'right-sticks'
 .main
@@ -13,5 +26,6 @@
   p = t(:slack_info)
   a href='https://slack.com/oauth/pick_reflow?scope=incoming-webhook&client_id=4033344265.85008077684' target='_blank'
     = inline_svg 'slack_button.svg', class: 'slack-button'
+
 .left-pattern
 .right-pattern

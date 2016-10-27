@@ -17,6 +17,40 @@ body {
   }
 }
 
+.icons-block {
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  top: 20px;
+  a {
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    fill: #bdbdbd;
+    transition: fill 0.3s ease-in-out;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .google-plus:hover {
+    fill: #f3898e;
+  }
+  .linkedin:hover {
+    fill: #fda829;
+  }
+  .facebook:hover {
+    fill: #3b5998;
+  }
+  .twitter:hover {
+    fill: #32b0fc;
+  }
+}
+
 .logo {
   max-height: 50vh;
   min-height: 250px;
@@ -69,7 +103,7 @@ body {
 }
 
 .main {
-  padding-top: 14vh;
+  padding-top: 85px;
   min-height: 70vh;
 }
 

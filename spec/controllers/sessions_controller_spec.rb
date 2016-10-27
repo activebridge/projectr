@@ -21,4 +21,10 @@ RSpec.describe SessionsController, type: :controller do
       it { expect(session[:user_id]).to eq(user.id) }
     end
   end
+
+  describe 'DELETE #destroy' do
+    before { delete :destroy, params: { user_id: user.id, auth_token: user.token } }
+
+    it { is_expected.to redirect_to(root_path) }
+  end
 end
