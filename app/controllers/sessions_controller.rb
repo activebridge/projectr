@@ -11,6 +11,12 @@ class SessionsController < ApplicationController
     redirect_to projects_path
   end
 
+  def destroy
+    session.delete :auth_token
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def token
