@@ -1,4 +1,5 @@
 @import 'contact';
+@import 'variables';
 
 body {
   background: #e1e1e1 asset-data-url('bg.png') repeat;
@@ -30,7 +31,7 @@ body {
   .social-icon {
     width: 40px;
     height: 40px;
-    fill: #bdbdbd;
+    fill: $social-icon;
     transition: fill 0.3s ease-in-out;
     &:hover {
       cursor: pointer;
@@ -38,16 +39,22 @@ body {
   }
 
   .google-plus:hover {
-    fill: #f3898e;
+    fill: $google-plus-hover;
   }
   .linkedin:hover {
-    fill: #fda829;
+    fill: $linkedin-hover;
   }
   .facebook:hover {
-    fill: #3b5998;
+    fill: $facebook-hover;
   }
   .twitter:hover {
-    fill: #32b0fc;
+    fill: $twitter-hover;
+  }
+
+  .version {
+    color: $red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
   }
 }
 
@@ -125,7 +132,7 @@ body {
   position: relative;
   z-index: 100;
   top: 130px;
-  padding: 170px 50px 200px;
+  padding: 170px 50px 65px;
   background: rgba(0, 0, 0, 0.76);
   text-align: center;
   p {
@@ -133,7 +140,7 @@ body {
     width: 80%;
     max-width: 494px;
     margin: 30px auto 40px;
-    color: #a7a7a7;
+    color: $gray-text;
     line-height: 1.3;
   }
   .slack-button {
@@ -147,6 +154,41 @@ body {
     top: -30px;
     left: 0;
     right: 0;
+  }
+  .footer-icons-block {
+    padding: 135px 0px 15px 0px;
+
+    a {
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      fill: $social-icon;
+      transition: fill 0.3s ease-in-out;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .google-plus:hover {
+      fill: $google-plus-hover;
+    }
+    .linkedin:hover {
+      fill: $linkedin-hover;
+    }
+    .facebook:hover {
+      fill: $facebook-hover;
+    }
+    .twitter:hover {
+      fill: $twitter-hover;
+    }
+  }
+
+  .copyright {
+    color: $gray-text;
+    font-family: Arial, Helvetica, sans-serif;
   }
 }
 
