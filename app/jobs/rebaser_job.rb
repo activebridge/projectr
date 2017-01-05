@@ -14,12 +14,13 @@ class RebaserJob < ApplicationJob
   private
 
   def rebase_pr(rebase, repo)
+    result = github.rebase
     if work_in_progress(rebase.title)
       set_status('pending', description: I18n.t(:wip))
-    elsif github.rebase == 'conflict'
+    elsif result == 'conflict'
       set_status('error', description: I18n.t(:conflict))
       SenderJob.new.perform(repo: repo, rebase: rebase, status: 'error') if repo.channel_url
-    elsif github.rebase == 'fail'
+    elsif result == 'fail'
       set_status('failure', description: I18n.t(:fail), target_url: edit_rebase_url(rebase, host: ENV['host']))
       PusherJob.new.perform(rebase) if repo.auto_rebase
     else

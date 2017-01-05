@@ -35,7 +35,7 @@ class Repo < ApplicationRecord
   end
 
   def refresh_all
-    RefresherJob.new.perform(name, git_repo['default_branch'])
+    RefresherJob.new.perform(name)
   end
 
   def github_hooks
