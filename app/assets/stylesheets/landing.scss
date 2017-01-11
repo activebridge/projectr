@@ -18,6 +18,17 @@ body {
   }
 }
 
+.version {
+  background-image: asset_data_url('beta.png');
+  background-size: cover;
+  width: 140px;
+  height: 100px;
+  position: absolute;
+  z-index: 1000;
+  left: 2%;
+  top: 2%;
+}
+
 .icons-block {
   position: absolute;
   z-index: 1000;
@@ -49,12 +60,6 @@ body {
   }
   .twitter:hover {
     fill: $twitter-hover;
-  }
-
-  .version {
-    color: $red;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
   }
 }
 
