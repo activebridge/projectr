@@ -8,8 +8,13 @@ class ApplicationJob < ActiveJob::Base
   end
 
   def status
-    status = @rebase.user.github.status(@rebase.repo, @rebase.head)
-    status['statuses'][0]['state']
+    begin
+      status = @rebase.user.github.status(@rebase.repo, @rebase.head)
+      status['statuses'][0]['state']
+    rescue Octokit::NotFound
+      repo = Repo.find_by(name: @rebase.repo)
+      SenderJob.new.perform(repo: repo, rebase: @rebase, status: 'branch_not_found') if repo.channel_url
+    end
   end
 
   def state
