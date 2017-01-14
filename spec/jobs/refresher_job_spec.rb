@@ -9,7 +9,7 @@ RSpec.describe RefresherJob, type: :job do
   let(:collaborator) { double(id: 258) }
   let(:webhook) { build(:webhook) }
   let(:deploy_key) { build(:deploy_key) }
-  let(:status) { { 'statuses' => [{ 'state' => 'success' }] } }
+  let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'success' }] } }
   let(:pull_request) { build(:pull_request) }
   let(:github) do
     double(

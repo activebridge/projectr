@@ -3,3 +3,6 @@ deployment:
     branch: master
     commands:
       - bundle exec cap production deploy
+machine:
+  ruby:
+    version: 2.3.1

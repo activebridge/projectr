@@ -14,7 +14,7 @@ class SenderJob < ApplicationJob
 
   def params_message(attr)
     {
-      username: 'ProjectR',
+      username: APPLICATION_TITLE,
       icon_url: I18n.t(:icon_url),
       attachments: attachments(attr)
     }
