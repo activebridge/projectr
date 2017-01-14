@@ -9,7 +9,7 @@ RSpec.describe RebaserJob, type: :job do
   let(:collaborator) { double(id: 258) }
   let(:webhook) { build(:webhook) }
   let(:deploy_key) { build(:deploy_key) }
-  let(:status) { { 'statuses' => [{ 'state' => 'pending' }] } }
+  let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'pending' }] } }
   let(:pull) { { 'state' => 'open' } }
   let(:pull_request) { build(:pull_request) }
   let(:payload) do
@@ -49,7 +49,7 @@ RSpec.describe RebaserJob, type: :job do
   end
 
   context 'when conflict' do
-    let(:status) { { 'statuses' => [{ 'state' => 'error' }] } }
+    let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'error' }] } }
 
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return('conflict')
@@ -60,7 +60,7 @@ RSpec.describe RebaserJob, type: :job do
   end
 
   context 'when fail' do
-    let(:status) { { 'statuses' => [{ 'state' => 'failure' }] } }
+    let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'failure' }] } }
 
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return('fail')
@@ -72,7 +72,7 @@ RSpec.describe RebaserJob, type: :job do
   end
 
   context 'when success' do
-    let(:status) { { 'statuses' => [{ 'state' => 'success' }] } }
+    let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'success' }] } }
 
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
@@ -80,5 +80,16 @@ RSpec.describe RebaserJob, type: :job do
     end
 
     it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
+  end
+
+  context 'when status not fined' do
+    let(:status) { { 'statuses' => [] } }
+
+    before do
+      allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
+      expect(described_class.perform_now(payload))
+    end
+
+    it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('undefined') }
   end
 end

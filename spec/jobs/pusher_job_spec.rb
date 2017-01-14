@@ -9,7 +9,7 @@ RSpec.describe PusherJob, type: :job do
   let(:collaborator) { double(id: 258) }
   let(:webhook) { build(:webhook) }
   let(:deploy_key) { build(:deploy_key) }
-  let(:status) { { 'statuses' => [{ 'state' => 'pending' }] } }
+  let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'pending' }] } }
   let(:github) do
     double(
       repos: [admin_repo],
@@ -31,7 +31,7 @@ RSpec.describe PusherJob, type: :job do
 
   context 'when push success' do
     let(:sha) { FFaker::IdentificationMX.rfc }
-    let(:status) { { 'statuses' => [{ 'state' => 'success' }] } }
+    let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'success' }] } }
 
     before do
       allow_any_instance_of(Github).to receive(:push).and_return(sha)
@@ -44,7 +44,7 @@ RSpec.describe PusherJob, type: :job do
   end
 
   context 'when push failure' do
-    let(:status) { { 'statuses' => [{ 'state' => 'failure' }] } }
+    let(:status) { { 'statuses' => [{ 'context' => 'ProjectR', 'state' => 'failure' }] } }
 
     before do
       allow_any_instance_of(Github).to receive(:push).and_return(nil)
