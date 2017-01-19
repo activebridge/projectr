@@ -10,8 +10,8 @@ class ApplicationJob < ActiveJob::Base
   end
 
   def status
-    status = @rebase.user.github.status(@rebase.repo, @rebase.head)
-    rebase_status = status['statuses'].find{|status| status['context'] == APPLICATION_TITLE }&.dig('state')
+    status = @rebase.user.github.status(@rebase.repo, @rebase.head).to_h
+    rebase_status = status[:statuses]&.find{|status| status[:context] == APPLICATION_TITLE }&.dig(:state)
     rebase_status ? rebase_status : 'undefined'
   end
 
