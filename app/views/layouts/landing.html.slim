@@ -6,6 +6,12 @@ html
     = csrf_meta_tags
     meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     meta name = 'description' content=t('meta.description')
+    meta property = "fb:app_id" content="myid"
+    meta property = "og:url" content="https://projectr.io/"
+    meta property = "og:type" content="website"
+    meta property = "og:title" content="ProjectR"
+    meta property = "og:description" content="ProjectR is github tool helping you to keep your commit's history clean"
+    meta property = "og:image" content="https://imgur.com/I91XEIk"
 
   body
     .body-schema = render 'layouts/schema'
