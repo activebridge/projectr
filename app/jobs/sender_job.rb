@@ -2,7 +2,9 @@ class SenderJob < ApplicationJob
   queue_as :default
 
   def perform(attr)
+    @rebase = attr[:rebase]
     uri = URI.parse(attr[:repo][:channel_url])
+    return unless uri.respond_to?(:request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(uri.request_uri)
