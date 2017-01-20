@@ -34,6 +34,7 @@ RSpec.describe RebaserJob, type: :job do
   end
 
   before do
+    allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
     allow(RefresherJob).to receive(:new).and_return(double(perform: []))
     allow(Octokit::Client).to receive(:new).and_return(github)
   end
