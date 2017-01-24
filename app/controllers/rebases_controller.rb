@@ -27,13 +27,18 @@ class RebasesController < ApplicationController
   end
 
   def push
-    RefresherJob.new.perform(payload['repository']['full_name'], base)
+    `rm -rf #{repo_name}` if payload['forced']
+    RefresherJob.new.perform(repo_name, base)
   end
 
   def pull_request
     RebaserJob.new.perform(payload) if ACTIONS.include?(payload['action'])
     @rebase = Rebase.find_by(github_id: payload['pull_request']['id'])
     @rebase.update_attributes(state: payload['pull_request']['state'])
+  end
+
+  def repo_name
+    @repo_name ||= payload['repository']['full_name']
   end
 
   def base
