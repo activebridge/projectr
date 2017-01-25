@@ -7,17 +7,23 @@ class RebaserJob < ApplicationJob
     @rebase.update_with_payload(payload: payload)
     @repo = Repo.find_by(name: @rebase.repo)
     set_status('pending', description: 'Running...')
-    rebase_pr(@rebase, @repo)
+    check_on_wip(@rebase, @repo)
     @rebase.update_attributes(status: status, state: state)
   end
 
   private
 
-  def rebase_pr(rebase, repo)
-    result = github.rebase
+  def check_on_wip(rebase, repo)
     if work_in_progress(rebase.title)
       set_status('pending', description: I18n.t(:wip))
-    elsif result == 'conflict'
+    else
+      rebase_pr(rebase, repo)
+    end
+  end
+
+  def rebase_pr(rebase, repo)
+    result = github.rebase
+    if result == 'conflict'
       set_status('error', description: I18n.t(:conflict))
       SenderJob.new.perform(repo: repo, rebase: rebase, status: 'error') if repo.channel_url.present?
     elsif result == 'fail'
