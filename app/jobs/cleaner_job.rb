@@ -10,6 +10,7 @@ class CleanerJob < ApplicationJob
     user.github.remove_hook(name, @hook.id) if @hook
     `rm #{ENV['key_path']}/id_rsa.#{name.parameterize}`
     `rm #{ENV['key_path']}/id_rsa.#{name.parameterize}.pub`
+    `rm -rf #{name}`
     cleaner_config(File.expand_path("#{ENV['key_path']}/config"), name)
   end
 end
