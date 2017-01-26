@@ -29,17 +29,13 @@ RSpec.describe CleanerJob, type: :job do
   end
 
   context 'deletes ssh key' do
-    let(:ssh_path) { File.expand_path("~/.ssh/id_rsa.#{repo.name}") }
+    let(:ssh_path) { File.expand_path("#{ENV['key_path']}/id_rsa.#{repo.name}") }
     it { expect(File.file?(ssh_path)).to be_falsey }
   end
 
   context 'clears config file' do
-    let(:content) do
-      "\nHost #{repo.name} github.com
-      Hostname github.com
-      IdentityFile ~/.ssh/id_rsa.#{repo.name}\n \n\n"
-    end
-    let(:file_path) { File.expand_path('~/.ssh/config') }
+    let(:content) { SSH::SSH_CONFIG % { name: repo.name.parameterize } }
+    let(:file_path) { File.expand_path("#{ENV['key_path']}/config") }
     it { expect(File.read(file_path)).not_to include(content) }
   end
 end

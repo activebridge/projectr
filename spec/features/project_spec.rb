@@ -19,7 +19,7 @@ feature 'Project' do
       add_deploy_key: deploy_key
     )
   end
-  let(:projects_page) { ProjectPage.new(projects_path) }
+  let(:projects_page) { ProjectPage.new }
 
   before do
     page.set_rack_session(user_id: user.id)
@@ -34,7 +34,7 @@ feature 'Project' do
   end
 
   describe 'When project missing' do
-    let(:ssh_path) { File.expand_path("~/.ssh/id_rsa.#{repo.name}") }
+    let(:ssh_path) { File.expand_path("#{ENV['key_path']}/id_rsa.#{repo.name}") }
 
     scenario 'Create project' do
       projects_page.open
@@ -49,18 +49,18 @@ feature 'Project' do
 
   describe 'When project present' do
     scenario 'Show project' do
-      visit "projects/#{repo.name}"
+      visit project_path(repo.name)
       expect(page).to have_text(repo.name)
     end
 
     scenario 'Update project' do
-      visit "projects/#{repo.name}"
+      visit project_path(repo.name)
       projects_page.update_repo
       expect(find('#repo_auto_rebase', visible: false).checked?).to eq(true)
     end
 
     scenario 'Destroy project' do
-      visit "projects/#{repo.name}"
+      visit project_path(repo.name)
       projects_page.destroy_repo
       expect(page).to have_css('ul.list')
     end

@@ -59,6 +59,6 @@ class Repo < ApplicationRecord
   end
 
   def ssh_key
-    @ssh_key = `cat ~/.ssh/id_rsa.#{name.parameterize}.pub`.strip
+    @ssh_key ||= `cat #{ENV['key_path']}/id_rsa.#{name.parameterize}.pub`.strip
   end
 end

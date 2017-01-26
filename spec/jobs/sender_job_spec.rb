@@ -29,10 +29,10 @@ RSpec.describe SenderJob, type: :job do
   let(:channel_url) { 'https://hooks.slack.com' }
   let(:options) { { repo: repo, rebase: rebase, status: 'success' } }
 
-  before {
+  before do
     allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
     allow(Octokit::Client).to receive(:new).and_return(github)
-  }
+  end
 
   context 'when channel url correct' do
     it 'successful send message' do
