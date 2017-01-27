@@ -22,7 +22,7 @@ class ApplicationJob < ActiveJob::Base
 
   def cleaner_config(path, name)
     config = File.read(path)
-    key = config.match(/\n.*#{name.parameterize}.*\n.*\n.*\n.*\n/).to_s
+    key = SSH::SSH_CONFIG % { name: name.parameterize }
     config.gsub!(key, '')
     File.open(path, 'w') { |file| file.puts config }
   end
