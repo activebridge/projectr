@@ -27,7 +27,7 @@ class RebasesController < ApplicationController
   end
 
   def push
-    `rm -rf #{repo_name}` if payload['forced']
+    `rm -rf #{repo_name}` unless payload['deleted']
     RefresherJob.new.perform(repo_name, base)
   end
 
