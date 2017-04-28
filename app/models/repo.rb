@@ -7,7 +7,7 @@ class Repo < ApplicationRecord
   validates :name, :ssh, presence: true, uniqueness: true
 
   before_validation :set_github_data, on: :create
-  after_create :generate_ssh, :refresh_all, :init_project
+  after_create :generate_ssh, :init_project
   after_destroy :clean_project
 
   private
@@ -18,7 +18,7 @@ class Repo < ApplicationRecord
   end
 
   def init_project
-    user.github.create_hook(name, 'web', { url: webhook }, { events: %w(push pull_request) }) unless hook_url
+    user.github.create_hook(name, 'web', { url: webhook }, { events: %w[push pull_request] }) unless hook_url
     user.github.add_deploy_key(name, 'ProjectR', ssh_key) unless deploy_key
   end
 
@@ -32,10 +32,6 @@ class Repo < ApplicationRecord
 
   def git_collaborators
     @git_collaborators ||= user.github.collaborators(name).map(&:id)
-  end
-
-  def refresh_all
-    RefresherJob.new.perform(name)
   end
 
   def github_hooks

@@ -11,8 +11,12 @@ class ProjectsController < ApplicationController
 
   def create
     @repo = current_user.repos.build(name: params[:id])
-    @errors = @repo.errors unless @repo.save
-    render :show
+    if @repo.valid? && @repo.save
+      RefresherJob.new.perform(@repo.name)
+      render :show
+    else
+      @errors = @repo.errors
+    end
   end
 
   def destroy
