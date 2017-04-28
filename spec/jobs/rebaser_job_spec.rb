@@ -83,11 +83,10 @@ RSpec.describe RebaserJob, type: :job do
     it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
   end
 
-  context 'when status not fined' do
-    let(:status) { { statuses: [] } }
-
+  context 'when status not found' do
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
+      allow(github).to receive(:status).and_raise(Octokit::NotFound)
       expect(described_class.perform_now(payload))
     end
 

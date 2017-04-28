@@ -55,8 +55,8 @@ RSpec.describe RebasesController, type: :controller do
       let(:env) { { 'HTTP_X_GITHUB_EVENT' => 'pull_request' } }
       let(:payload) do
         {
-          'pull_request' => { 'id' => rebase.github_id, 'state' => 'open' },
-          'action' => 'opened'
+          'pull_request' => { 'id' => rebase.github_id, 'state' => 'closed' },
+          'action' => 'closed'
         }
       end
 
@@ -66,7 +66,7 @@ RSpec.describe RebasesController, type: :controller do
         post :create
       end
 
-      it { expect(Rebase.find_by(github_id: github_id).state).to eq('open') }
+      it { expect(Rebase.find_by(github_id: github_id).state).to eq('closed') }
     end
   end
 

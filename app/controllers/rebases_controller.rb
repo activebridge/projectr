@@ -1,6 +1,6 @@
 class RebasesController < ApplicationController
-  EVENTS = %w(push pull_request).freeze
-  ACTIONS = %w(opened reopened synchronize edited).freeze
+  EVENTS = %w[push pull_request].freeze
+  ACTIONS = %w[opened reopened synchronize edited].freeze
 
   skip_before_action :verify_authenticity_token, only: :create
   skip_before_action :require_user, only: :create
@@ -32,7 +32,7 @@ class RebasesController < ApplicationController
   end
 
   def pull_request
-    RebaserJob.new.perform(payload) if ACTIONS.include?(payload['action'])
+    return RebaserJob.new.perform(payload) if ACTIONS.include?(payload['action'])
     @rebase = Rebase.find_by(github_id: payload['pull_request']['id'])
     @rebase.update_attributes(state: payload['pull_request']['state'])
   end

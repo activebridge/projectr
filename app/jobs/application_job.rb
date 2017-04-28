@@ -6,13 +6,17 @@ class ApplicationJob < ActiveJob::Base
   private
 
   def set_status(status, options = {})
-    @rebase.user.github.create_status(@rebase.repo, @rebase.sha, status, options.merge(context: APPLICATION_TITLE))
+    @rebase.user.github.create_status(
+      @rebase.repo, @rebase.sha,
+      status, options.merge(context: APPLICATION_TITLE)
+    )
   end
 
   def status
-    status = @rebase.user.github.status(@rebase.repo, @rebase.head).to_h
-    rebase_status = status[:statuses]&.find{|status| status[:context] == APPLICATION_TITLE }&.dig(:state)
-    rebase_status ? rebase_status : 'undefined'
+    status = @rebase.user.github.status(@rebase.repo, @rebase.head)
+    status[:statuses][0][:state]
+  rescue Octokit::NotFound
+    'undefined'
   end
 
   def state
