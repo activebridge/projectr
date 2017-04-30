@@ -26,9 +26,10 @@ RSpec.describe RebasesController, type: :controller do
   before do
     allow_any_instance_of(described_class).to receive(:current_user).and_return(user)
     allow(Octokit::Client).to receive(:new).and_return(github)
-    allow(RefresherJob).to receive(:new).and_return(double(perform: []))
-    allow(RebaserJob).to receive(:new).and_return(double(perform: []))
-    allow(PusherJob).to receive(:new).and_return(double(perform: []))
+    allow(Sidekiq::Client).to receive(:enqueue_to).and_return(double(jid: 123))
+    allow(RefresherWorker).to receive(:new).and_return(double(perform: []))
+    allow(RebaserWorker).to receive(:new).and_return(double(perform: []))
+    allow(PusherWorker).to receive(:new).and_return(double(perform: []))
   end
 
   describe 'POST #create' do
@@ -55,6 +56,7 @@ RSpec.describe RebasesController, type: :controller do
       let(:env) { { 'HTTP_X_GITHUB_EVENT' => 'pull_request' } }
       let(:payload) do
         {
+          'repository' => { 'full_name' => repo.name },
           'pull_request' => { 'id' => rebase.github_id, 'state' => 'closed' },
           'action' => 'closed'
         }
@@ -63,6 +65,7 @@ RSpec.describe RebasesController, type: :controller do
       before do
         allow(JSON).to receive(:parse).and_return(payload)
         allow(request).to receive(:env).and_return(env)
+        expect(StateUpdaterWorker.new.perform(payload))
         post :create
       end
 

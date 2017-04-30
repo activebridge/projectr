@@ -1,6 +1,4 @@
-class RebaserJob < ApplicationJob
-  queue_as :default
-
+class RebaserWorker < ApplicationWorker
   def perform(payload)
     pull_request_id = payload['pull_request']['id']
     @rebase = Rebase.where(github_id: pull_request_id).first_or_initialize
@@ -25,13 +23,13 @@ class RebaserJob < ApplicationJob
     result = github.rebase
     if result == 'conflict'
       set_status('error', description: I18n.t(:conflict))
-      SenderJob.new.perform(repo: repo, rebase: rebase, status: 'error') if repo.channel_url.present?
+      SenderWorker.new.perform(repo: repo, rebase: rebase, status: 'error') if repo.channel_url.present?
     elsif result == 'fail'
       set_status('failure', description: I18n.t(:fail), target_url: edit_rebase_url(rebase, host: ENV['host']))
-      PusherJob.new.perform(rebase) if repo.auto_rebase
+      PusherWorker.new.perform(rebase) if repo.auto_rebase
     else
       set_status('success', description: I18n.t(:success))
-      SenderJob.new.perform(repo: repo, rebase: rebase, status: 'success') if repo.channel_url.present?
+      SenderWorker.new.perform(repo: repo, rebase: rebase, status: 'success') if repo.channel_url.present?
     end
   end
 

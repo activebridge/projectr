@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CleanerJob, type: :job do
+RSpec.describe CleanerWorker, type: :job do
   let!(:user) { create(:user) }
   let(:repo) { create(:repo, user: user) }
   let(:admin_repo) { build(:admin_repo, permissions: double(admin: true)) }
@@ -23,9 +23,10 @@ RSpec.describe CleanerJob, type: :job do
   end
 
   before do
-    allow(RefresherJob).to receive(:new).and_return(double(perform: []))
+    allow(Sidekiq::Client).to receive(:enqueue_to).and_return(double(jid: 123))
+    allow(RefresherWorker).to receive(:new).and_return(double(perform: []))
     allow(Octokit::Client).to receive(:new).and_return(github)
-    expect(described_class.perform_now(repo.name, user))
+    expect(described_class.new.perform(repo.name, user))
   end
 
   context 'deletes ssh key' do

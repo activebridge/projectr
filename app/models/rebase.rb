@@ -12,6 +12,11 @@ class Rebase < ApplicationRecord
     save
   end
 
+  def self.update_pull_state(payload)
+    rebase = self.find_by(github_id: payload['pull_request']['id'])
+    rebase.update_attributes(state: payload['pull_request']['state'])
+  end
+
   private
 
   def initialize_payload_value(payload)

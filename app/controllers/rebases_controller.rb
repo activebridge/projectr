@@ -13,7 +13,7 @@ class RebasesController < ApplicationController
   end
 
   def update
-    PusherJob.new.perform(rebase)
+    DynamicWorker.call(rebase.repo, PusherWorker, rebase)
     respond_to do |format|
       format.html { head 200 }
       format.js
@@ -28,13 +28,15 @@ class RebasesController < ApplicationController
 
   def push
     `rm -rf #{repo_name}` unless payload['deleted']
-    RefresherJob.new.perform(repo_name, base)
+    DynamicWorker.call(repo_name, RefresherWorker, repo_name, base)
   end
 
   def pull_request
-    return RebaserJob.new.perform(payload) if ACTIONS.include?(payload['action'])
-    @rebase = Rebase.find_by(github_id: payload['pull_request']['id'])
-    @rebase.update_attributes(state: payload['pull_request']['state'])
+    if ACTIONS.include?(payload['action'])
+      DynamicWorker.call(repo_name, RebaserWorker, payload)
+    else
+      DynamicWorker.call(repo_name, StateUpdaterWorker, payload)
+    end
   end
 
   def repo_name

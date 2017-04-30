@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PusherJob, type: :job do
+RSpec.describe PusherWorker, type: :job do
   let(:user) { create(:user) }
   let(:repo) { create(:repo, user: user) }
   let(:rebase) { create(:rebase, repo: repo.name) }
@@ -25,7 +25,8 @@ RSpec.describe PusherJob, type: :job do
   end
 
   before do
-    allow(RefresherJob).to receive(:new).and_return(double(perform: []))
+    allow(Sidekiq::Client).to receive(:enqueue_to).and_return(double(jid: 123))
+    allow(RefresherWorker).to receive(:new).and_return(double(perform: []))
     allow(Octokit::Client).to receive(:new).and_return(github)
   end
 
@@ -35,7 +36,7 @@ RSpec.describe PusherJob, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:push).and_return(sha)
-      expect(described_class.perform_now(rebase))
+      expect(described_class.new.perform(rebase))
     end
 
     it { expect(rebase.sha).to eq(sha) }
@@ -48,7 +49,7 @@ RSpec.describe PusherJob, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:push).and_return(nil)
-      expect(described_class.perform_now(rebase))
+      expect(described_class.new.perform(rebase))
     end
 
     it { expect(rebase.status).to eq('failure') }
