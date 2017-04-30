@@ -2,8 +2,8 @@ class SenderJob < ApplicationJob
   queue_as :default
 
   def perform(attr)
-    @rebase = attr[:rebase]
-    uri = URI.parse(attr[:repo][:channel_url])
+    channel_url = attr[:channel_url] || attr[:repo][:channel_url]
+    uri = URI.parse(channel_url)
     return unless uri.respond_to?(:request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -23,11 +23,8 @@ class SenderJob < ApplicationJob
   end
 
   def attachments(attr)
-    if attr[:status] == 'test'
-      test_template(attr[:repo])
-    else
-      send "#{status}_template", attr[:rebase]
-    end
+    return test_template(attr[:repo]) if attr[:status].eql?('test')
+    send "#{attr[:status]}_template", attr[:rebase]
   end
 
   def success_template(pr)
@@ -56,7 +53,7 @@ class SenderJob < ApplicationJob
   def test_template(repo)
     [
       {
-        text: I18n.t(:message_test, repo: repo.name)
+        text: I18n.t(:message_test, repo: repo)
       }
     ]
   end
