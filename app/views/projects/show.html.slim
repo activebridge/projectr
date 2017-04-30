@@ -4,21 +4,17 @@
       = f.text_field :channel_url, class: 'channel-url', placeholder: t('placeholder.webhook')
       br
       = f.submit :save, data: { disable_with: 'Please wait...' }, class: 'channel-button'
-      = link_to t(:test), project_test_message_path(repo.name), method: :post, id: 'test_channel', class: 'channel-button', remote: true
+      = link_to t(:test), project_test_message_path(repo.name), class: 'channel-button', id: 'test_channel'
   .repository-head
     .repository-title
       = repo.name
-
     .repository-form
-
       = form_for repo, url: project_path, method: :patch, remote: true do |f|
         .flatCheckbox
           = f.check_box :auto_rebase, class: 'auto-rebase'
           label for='repo_auto_rebase'
           div
-
       = link_to project_path(repo.name), method: :delete, class: 'link-delete' do
         = inline_svg 'trash.svg', class: 'delete'
-
   ul.pull-list
     = render partial: 'pull', collection: pulls
