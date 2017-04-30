@@ -30,8 +30,24 @@ RSpec.describe RefresherJob, type: :job do
   before do
     allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
     allow(Octokit::Client).to receive(:new).and_return(github)
-    expect(described_class.perform_now(repo.name, rebase.base))
   end
 
-  it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
+  context 'when base present' do
+    let(:rebase) { create(:rebase, repo: repo.name, base: 'master') }
+    let(:status) { { statuses: [{ context: 'ProjectR', state: 'failure' }] } }
+
+    before do
+      expect(described_class.perform_now(repo.name, rebase.base))
+    end
+
+    it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('failure') }
+  end
+
+  context 'when base missing' do
+    before do
+      expect(described_class.perform_now(repo.name))
+    end
+
+    it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
+  end
 end
