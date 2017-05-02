@@ -34,6 +34,6 @@ class RebaserWorker < ApplicationWorker
   end
 
   def work_in_progress(title)
-    title.scan(/\B#\w+/).any? { |l| l.casecmp('#wip') == 0 }
+    title.scan(/\B#\w+/).any? { |l| l.casecmp('#wip').zero? }
   end
 end

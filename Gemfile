@@ -24,6 +24,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'webmock'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'simplecov'

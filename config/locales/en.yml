@@ -14,8 +14,8 @@ en:
       phone: +380638645576
 
   message_error: "Branch has conflicts that must be resolved.\nTry do command:\n ```git pull origin %{base} --rebase``` Fix your conflicts and then commit the result"
-  message_success: This branch has no conflicts with the base branch.
-  message_test: Test message for %{repo}
+  message_success: '*%{branch}* has no conflicts with the base (%{base}) branch.'
+  message_test: 'Test message for %{repo}.'
   test: Test message
   icon_url: https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-09-28/85076239797_111d636db6d3fb4a8c9d_96.png
 
