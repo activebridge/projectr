@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RebaserJob, type: :job do
+RSpec.describe RebaserWorker, type: :job do
   let(:user) { create(:user) }
   let(:repo) { create(:repo, user: user) }
   let(:rebase) { create(:rebase, repo: repo.name) }
@@ -35,7 +35,8 @@ RSpec.describe RebaserJob, type: :job do
 
   before do
     allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
-    allow(RefresherJob).to receive(:new).and_return(double(perform: []))
+    allow(Sidekiq::Client).to receive(:enqueue_to).and_return(double(jid: 123))
+    allow(RefresherWorker).to receive(:new).and_return(double(perform: []))
     allow(Octokit::Client).to receive(:new).and_return(github)
   end
 
@@ -43,7 +44,7 @@ RSpec.describe RebaserJob, type: :job do
     let(:pull_request) { build(:pull_request, title: 'title #wip') }
 
     before do
-      expect(described_class.perform_now(payload))
+      expect(described_class.new.perform(payload))
     end
 
     it { expect(Rebase.find_by(repo: repo.name).status).to eq('pending') }
@@ -54,7 +55,7 @@ RSpec.describe RebaserJob, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return('conflict')
-      expect(described_class.perform_now(payload))
+      expect(described_class.new.perform(payload))
     end
 
     it { expect(Rebase.find_by(repo: repo.name).status).to eq('error') }
@@ -65,8 +66,8 @@ RSpec.describe RebaserJob, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return('fail')
-      allow(PusherJob).to receive(:new).and_return(double(perform: []))
-      expect(described_class.perform_now(payload))
+      allow(PusherWorker).to receive(:new).and_return(double(perform: []))
+      expect(described_class.new.perform(payload))
     end
 
     it { expect(Rebase.find_by(repo: repo.name).status).to eq('failure') }
@@ -77,7 +78,7 @@ RSpec.describe RebaserJob, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
-      expect(described_class.perform_now(payload))
+      expect(described_class.new.perform(payload))
     end
 
     it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
@@ -87,7 +88,7 @@ RSpec.describe RebaserJob, type: :job do
     before do
       allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
       allow(github).to receive(:status).and_raise(Octokit::NotFound)
-      expect(described_class.perform_now(payload))
+      expect(described_class.new.perform(payload))
     end
 
     it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('undefined') }

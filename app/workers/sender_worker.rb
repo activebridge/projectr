@@ -1,9 +1,9 @@
-class SenderJob < ApplicationJob
-  queue_as :default
-
+class SenderWorker < ApplicationWorker
   def perform(attr)
+    attr.symbolize_keys!
     channel_url = attr[:channel_url] || attr[:repo][:channel_url]
     uri = URI.parse(channel_url)
+    @rebase = attr[:rebase]
     return unless uri.respond_to?(:request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true

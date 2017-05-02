@@ -1,6 +1,4 @@
-class PusherJob < ApplicationJob
-  queue_as :default
-
+class PusherWorker < ApplicationWorker
   def perform(rebase)
     @rebase = rebase
     set_status('pending', description: 'Rebase in progress')

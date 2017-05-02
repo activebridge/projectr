@@ -23,7 +23,7 @@ class Repo < ApplicationRecord
   end
 
   def clean_project
-    CleanerJob.perform_later(name, user)
+    DynamicWorker.call(name, CleanerWorker, name, user.id)
   end
 
   def git_repo
@@ -32,6 +32,10 @@ class Repo < ApplicationRecord
 
   def git_collaborators
     @git_collaborators ||= user.github.collaborators(name).map(&:id)
+  end
+
+  def refresh_all
+    DynamicWorker.call(name, RefresherWorker, name)
   end
 
   def github_hooks

@@ -1,6 +1,8 @@
 class Projects::TestMessagesController < ApplicationController
   def create
-    SenderJob.new.perform(
+    DynamicWorker.call(
+      params[:project_id],
+      SenderWorker,
       repo: params[:project_id],
       channel_url: params[:channel_url],
       status: 'test'

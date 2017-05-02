@@ -4,5 +4,7 @@ deployment:
     commands:
       - bundle exec cap production deploy
 machine:
+  services:
+    - redis
   ruby:
     version: 2.3.1

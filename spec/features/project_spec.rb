@@ -24,8 +24,9 @@ feature 'Project' do
   before do
     page.set_rack_session(user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    allow(Sidekiq::Client).to receive(:enqueue_to).and_return(double(jid: 123))
     allow(Octokit::Client).to receive(:new).and_return(github)
-    allow(RefresherJob).to receive(:new).and_return(double(perform: []))
+    allow(RefresherWorker).to receive(:new).and_return(double(perform: []))
   end
 
   scenario 'Visit Projects index' do

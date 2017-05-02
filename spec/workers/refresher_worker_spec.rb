@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe SenderJob, type: :job do
+RSpec.describe RefresherWorker, type: :job do
   let(:user) { create(:user) }
-  let(:repo) { create(:repo, user: user, channel_url: channel_url) }
+  let(:repo) { create(:repo, user: user) }
   let(:rebase) { create(:rebase, repo: repo.name) }
   let(:admin_repo) { build(:admin_repo, permissions: double(admin: true)) }
   let(:git_repo) { build(:git_repo) }
@@ -26,25 +26,28 @@ RSpec.describe SenderJob, type: :job do
       pull: pull_request
     )
   end
-  let(:channel_url) { 'https://hooks.slack.com' }
-  let(:options) { { repo: repo, rebase: rebase, status: 'success' } }
 
   before do
     allow_any_instance_of(Github).to receive(:rebase).and_return(nil)
     allow(Octokit::Client).to receive(:new).and_return(github)
   end
 
-  context 'when channel url correct' do
-    it 'successful send message' do
-      expect(described_class.perform_now(options)).to be_instance_of(Net::HTTPFound)
+  context 'when base present' do
+    let(:rebase) { create(:rebase, repo: repo.name, base: 'master') }
+    let(:status) { { statuses: [{ context: 'ProjectR', state: 'failure' }] } }
+
+    before do
+      expect(described_class.new.perform(repo.name, rebase.base))
     end
+
+    it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('failure') }
   end
 
-  context 'when channel url is incorrect' do
-    let(:channel_url) { '' }
-
-    it 'does not send message' do
-      expect(described_class.perform_now(options)).to eq nil
+  context 'when base missing' do
+    before do
+      expect(described_class.new.perform(repo.name))
     end
+
+    it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('success') }
   end
 end

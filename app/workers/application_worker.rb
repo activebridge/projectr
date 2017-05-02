@@ -1,5 +1,6 @@
-class ApplicationJob < ActiveJob::Base
+class ApplicationWorker
   include Rails.application.routes.url_helpers
+  include Sidekiq::Worker
 
   APPLICATION_TITLE = 'ProjectR'.freeze
 
