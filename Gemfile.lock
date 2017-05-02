@@ -59,6 +59,9 @@ GEM
     capistrano-rails (1.2.3)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-sidekiq (0.10.0)
+      capistrano
+      sidekiq (>= 3.4)
     capybara (2.13.0)
       addressable
       mime-types (>= 1.16)
@@ -270,6 +273,7 @@ DEPENDENCIES
   awesome_print
   capistrano-passenger
   capistrano-rails
+  capistrano-sidekiq
   capybara
   coffee-rails (~> 4.2)
   database_cleaner
