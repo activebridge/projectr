@@ -19,6 +19,7 @@ gem 'sitemap_generator'
 # Use Capistrano for deployment
 gem 'capistrano-passenger'
 gem 'capistrano-rails', group: :development
+gem 'capistrano-sidekiq' , group: :development
 
 group :development, :test do
   gem 'database_cleaner'
