@@ -22,6 +22,7 @@ feature 'Project' do
   let(:projects_page) { ProjectPage.new }
 
   before do
+    WebMock.allow_net_connect!
     page.set_rack_session(user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     allow(Sidekiq::Client).to receive(:enqueue_to).and_return(double(jid: 123))

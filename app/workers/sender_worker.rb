@@ -4,7 +4,7 @@ class SenderWorker < ApplicationWorker
   def perform(attr)
     attr.symbolize_keys!
     channel_url = attr[:channel_url] || attr[:repo][:channel_url]
-    return unless channel_url && STATUSES.include?(attr[:status])
+    return unless channel_url.present? && STATUSES.include?(attr[:status])
     uri = URI.parse(channel_url)
     return unless uri.respond_to?(:request_uri)
     post_message(uri, attr)
