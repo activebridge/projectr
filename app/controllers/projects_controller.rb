@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   def create
     @repo = current_user.repos.build(name: params[:id])
     if @repo.valid? && @repo.save
-      RefresherJob.new.perform(@repo.name)
+      DynamicWorker.call(@repo.name, RefresherWorker, @repo.name)
       render :show
     else
       @errors = @repo.errors

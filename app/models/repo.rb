@@ -34,10 +34,6 @@ class Repo < ApplicationRecord
     @git_collaborators ||= user.github.collaborators(name).map(&:id)
   end
 
-  def refresh_all
-    DynamicWorker.call(name, RefresherWorker, name)
-  end
-
   def github_hooks
     @github_hooks ||= user.github.hooks(name)
   end
