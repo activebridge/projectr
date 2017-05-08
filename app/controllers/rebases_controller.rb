@@ -13,7 +13,7 @@ class RebasesController < ApplicationController
   end
 
   def update
-    PusherWorker.new.perform(rebase)
+    PusherWorker.new.perform(params[:id])
     respond_to do |format|
       format.html { redirect_to project_path(rebase.repo) }
       format.js

@@ -28,7 +28,7 @@ class RebaserWorker < ApplicationWorker
       SenderWorker.new.perform(repo: repo, rebase: rebase, status: 'error') if repo.channel_url.present?
     elsif result == 'fail'
       set_status('failure', description: I18n.t(:fail), target_url: edit_rebase_url(rebase, host: ENV['host']))
-      PusherWorker.new.perform(rebase) if repo.auto_rebase
+      PusherWorker.new.perform(rebase.id) if repo.auto_rebase
     else
       set_status('success', description: I18n.t(:success))
       SenderWorker.new.perform(repo: repo, rebase: rebase, status: 'success') if repo.channel_url.present?

@@ -36,12 +36,12 @@ RSpec.describe PusherWorker, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:push).and_return(sha)
-      expect(described_class.new.perform(rebase))
+      expect(described_class.new.perform(rebase.id))
     end
 
-    it { expect(rebase.sha).to eq(sha) }
-    it { expect(rebase.pushed).to eq(true) }
-    it { expect(rebase.status).to eq('success') }
+    it { expect(Rebase.find(rebase.id).status).to eq('success') }
+    it { expect(Rebase.find(rebase.id).sha).to eq(sha) }
+    it { expect(Rebase.find(rebase.id).pushed).to eq(true) }
   end
 
   context 'when push failure' do
@@ -49,9 +49,9 @@ RSpec.describe PusherWorker, type: :job do
 
     before do
       allow_any_instance_of(Github).to receive(:push).and_return(nil)
-      expect(described_class.new.perform(rebase))
+      expect(described_class.new.perform(rebase.id))
     end
 
-    it { expect(rebase.status).to eq('failure') }
+    it { expect(Rebase.find(rebase.id).status).to eq('failure') }
   end
 end
