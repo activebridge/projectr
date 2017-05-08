@@ -43,9 +43,7 @@ RSpec.describe RebaserWorker, type: :job do
   context 'when work in progress' do
     let(:pull_request) { build(:pull_request, title: 'title #wip') }
 
-    before do
-      expect(described_class.new.perform(payload))
-    end
+    before { expect(described_class.new.perform(payload)) }
 
     it { expect(Rebase.find_by(repo: repo.name).status).to eq('pending') }
   end
@@ -92,5 +90,17 @@ RSpec.describe RebaserWorker, type: :job do
     end
 
     it { expect(Rebase.find_by(github_id: pull_request['id']).status).to eq('undefined') }
+  end
+
+  context 'when repository is missing' do
+    let!(:rebase) { create(:rebase, repo: repo.name, github_id: pull_request['id']) }
+
+    subject { described_class.new.perform(payload) }
+
+    before do
+      allow(Repo).to receive(:find_by_name!).and_raise(ActiveRecord::RecordNotFound)
+    end
+
+    it { expect { subject }.to change{ Rebase.count }.by(-1) }
   end
 end

@@ -1,5 +1,6 @@
 class PusherWorker < ApplicationWorker
   def perform(rebase)
+    return unless rebase.repository
     @rebase = rebase
     set_status('pending', description: 'Rebase in progress')
     if (sha = github.push)

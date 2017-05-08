@@ -13,9 +13,9 @@ class RebasesController < ApplicationController
   end
 
   def update
-    DynamicWorker.call(rebase.repo, PusherWorker, rebase)
+    PusherWorker.new.perform(rebase)
     respond_to do |format|
-      format.html { head 200 }
+      format.html { redirect_to project_path(rebase.repo) }
       format.js
     end
   end

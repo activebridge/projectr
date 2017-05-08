@@ -77,7 +77,7 @@ RSpec.describe RebasesController, type: :controller do
     context 'when user is collaborator' do
       before { patch :update, params: { id: rebase.id } }
 
-      it { is_expected.to have_http_status(200) }
+      it { is_expected.to redirect_to(project_path(rebase.repo)) }
     end
 
     context 'when user is not collaborator' do
