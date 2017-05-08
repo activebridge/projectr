@@ -13,8 +13,8 @@ class Rebase < ApplicationRecord
   end
 
   def self.update_pull_state(payload)
-    rebase = self.find_by(github_id: payload['pull_request']['id'])
-    rebase.update_attributes(state: payload['pull_request']['state'])
+    rebase = find_by_github_id(payload['pull_request']['id'])
+    rebase.update_attributes(state: payload['pull_request']['state']) if rebase
   end
 
   private
