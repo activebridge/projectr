@@ -3,10 +3,12 @@ class RebaserWorker < ApplicationWorker
     pull_request_id = payload['pull_request']['id']
     @rebase = Rebase.where(github_id: pull_request_id).first_or_initialize
     @rebase.update_with_payload(payload: payload)
-    @repo = Repo.find_by(name: @rebase.repo)
+    @repo = Repo.find_by_name!(@rebase.repo)
     set_status('pending', description: 'Running...')
     check_on_wip(@rebase, @repo)
     @rebase.update_attributes(status: status, state: state)
+  rescue ActiveRecord::RecordNotFound
+    @rebase.destroy
   end
 
   private

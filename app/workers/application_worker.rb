@@ -7,22 +7,29 @@ class ApplicationWorker
   private
 
   def set_status(status, options = {})
+    return unless repo
     @rebase.user.github.create_status(
-      @rebase.repo, @rebase.sha,
-      status, options.merge(context: APPLICATION_TITLE)
+      @rebase.repo, @rebase.sha, status,
+      options.merge(context: APPLICATION_TITLE)
     )
   end
 
   def status
+    return unless repo
     status = @rebase.user.github.status(@rebase.repo, @rebase.head)
-    status[:statuses][0][:state]
+    status[:statuses] ? status[:statuses][0][:state] : 'undefined'
   rescue Octokit::NotFound
     'undefined'
   end
 
   def state
+    return unless repo
     pull = @rebase.user.github.pull(@rebase.repo, @rebase.number)
     pull['state']
+  end
+
+  def repo
+    @repo = @rebase.repository
   end
 
   def cleaner_config(path, name)
